@@ -19,7 +19,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen>
-    with AppBarCustom, CustomGestureDetector {
+    with CustomAppBar, CustomGestureDetector {
   bool _isSigning = false;
   final FirebaseAuthService _auth = FirebaseAuthService();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -53,14 +53,16 @@ class _LoginScreenState extends State<LoginScreen>
                       const SizedBox(
                         height: 30,
                       ),
-                      const FormContainerWidget(
+                      FormContainerWidget(
+                        controller: _emailController,
                         hintText: "Email",
                         isPasswordField: false,
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      const FormContainerWidget(
+                      FormContainerWidget(
+                        controller: _passwordController,
                         hintText: "Password",
                         isPasswordField: true,
                       ),
@@ -87,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen>
             )));
   }
 
-  void _signIn(BuildContext context) async {
+  Future<void> _signIn(BuildContext context) async {
     setState(() {
       _isSigning = true;
     });
@@ -99,16 +101,16 @@ class _LoginScreenState extends State<LoginScreen>
 
     setState(() {
       _isSigning = false;
-      if (user != null) {
-        showToast(message: "User is successfully signed in");
-        if (context.mounted) context.pushReplacement('/home');
-      } else {
-        showToast(message: "some error occured");
-      }
     });
+    if (user != null) {
+      showToast(message: "User is successfully signed in");
+      if (context.mounted) context.pushReplacement('/home');
+    } else {
+      showToast(message: "some error occured");
+    }
   }
 
-  void _signInWithGoogle(BuildContext context) async {
+  Future<void> _signInWithGoogle(BuildContext context) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {

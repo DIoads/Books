@@ -1,4 +1,5 @@
 import 'package:book/config/firebase/firebase_auth_services.dart';
+import 'package:book/presentation/widgets/appBars/app_bar_custom.dart';
 import 'package:book/presentation/widgets/forms/form_container_widget.dart';
 import 'package:book/presentation/widgets/gesture/gesture_detector.dart';
 import 'package:book/presentation/widgets/row/row.dart';
@@ -17,10 +18,9 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen>
-    with CustomGestureDetector {
+    with CustomGestureDetector, CustomAppBar {
   final FirebaseAuthService _auth = FirebaseAuthService();
 
-  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -28,7 +28,6 @@ class _SignupScreenState extends State<SignupScreen>
 
   @override
   void dispose() {
-    _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -36,11 +35,11 @@ class _SignupScreenState extends State<SignupScreen>
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text("SignUp"),
-      ),
+      appBar: appBarWithReturnButton(
+          title: "Sign Up", backgroundcolor: colors.onPrimary),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -53,11 +52,6 @@ class _SignupScreenState extends State<SignupScreen>
               ),
               const SizedBox(
                 height: 30,
-              ),
-              FormContainerWidget(
-                controller: _usernameController,
-                hintText: "Username",
-                isPasswordField: false,
               ),
               const SizedBox(
                 height: 10,
@@ -100,7 +94,6 @@ class _SignupScreenState extends State<SignupScreen>
       isSigningUp = true;
     });
 
-    String username = _usernameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
 
