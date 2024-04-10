@@ -1,10 +1,13 @@
 import 'package:book/config/firebase/firebase_auth_services.dart';
-import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:book/presentation/widgets/appBars/app_bar_custom.dart';
 import 'package:book/presentation/widgets/forms/form_container_widget.dart';
+import 'package:book/presentation/widgets/gesture/gesture_detector.dart';
+import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   final String name = "Login";
@@ -17,7 +20,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> with AppBarCustom {
   bool _isSigning = false;
   final FirebaseAuthService _auth = FirebaseAuthService();
-  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
@@ -62,34 +65,47 @@ class _LoginScreenState extends State<LoginScreen> with AppBarCustom {
                       const SizedBox(
                         height: 10,
                       ),
+                      CustomGestureDetector(
+                        onpress: () => _signIn(context),
+                        isSigning: _isSigning,
+                        displayText: 'Login',
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       GestureDetector(
                         onTap: () {
-                          _signIn(context);
+                          _signInWithGoogle(context);
                         },
                         child: Container(
                           width: double.infinity,
                           height: 45,
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.red,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Center(
-                            child: _isSigning
-                                ? const CircularProgressIndicator(
+                          child: const Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.google,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Sign in with Google",
+                                  style: TextStyle(
                                     color: Colors.white,
-                                  )
-                                : const Text(
-                                    "Login",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    fontWeight: FontWeight.bold,
                                   ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
                       ),
                     ]),
               ),
@@ -115,6 +131,30 @@ class _LoginScreenState extends State<LoginScreen> with AppBarCustom {
       if (context.mounted) context.pushReplacement('/home');
     } else {
       showToast(message: "some error occured");
+    }
+  }
+
+  Future<void> _signInWithGoogle(BuildContext context) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken,
+        );
+
+        await _firebaseAuth.signInWithCredential(credential);
+        if (context.mounted) context.pushReplacement('/home');
+      }
+    } catch (e) {
+      showToast(message: "some error occured $e");
     }
   }
 }

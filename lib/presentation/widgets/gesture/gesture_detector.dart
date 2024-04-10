@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomGestureDetector extends StatelessWidget {
+  final String displayText;
   final bool isSigning;
   final VoidCallback onpress;
   const CustomGestureDetector(
-      {super.key, required this.onpress, required this.isSigning});
+      {super.key,
+      required this.onpress,
+      required this.isSigning,
+      required this.displayText});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +28,9 @@ class CustomGestureDetector extends StatelessWidget {
               ? const CircularProgressIndicator(
                   color: Colors.white,
                 )
-              : const Text(
-                  "Login",
-                  style: TextStyle(
+              : Text(
+                  displayText,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
