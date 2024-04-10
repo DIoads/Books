@@ -1,5 +1,7 @@
 import 'package:book/config/firebase/firebase_auth_services.dart';
 import 'package:book/presentation/widgets/forms/form_container_widget.dart';
+import 'package:book/presentation/widgets/gesture/gesture_detector.dart';
+import 'package:book/presentation/widgets/row/row.dart';
 import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,8 @@ class SignupScreen extends StatefulWidget {
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignupScreenState extends State<SignupScreen>
+    with CustomGestureDetector {
   final FirebaseAuthService _auth = FirebaseAuthService();
 
   final TextEditingController _usernameController = TextEditingController();
@@ -75,51 +78,16 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 30,
               ),
-              GestureDetector(
-                onTap: () {
-                  _signUp(context);
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                      child: isSigningUp
-                          ? const CircularProgressIndicator(
-                              color: Colors.white,
-                            )
-                          : const Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                ),
-              ),
+              iconlessGestureDetector(() {
+                _signUp(context);
+              }, isSigningUp, 'Sign Up'),
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Already have an account?"),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                      onTap: () {
-                        context.pushReplacement('/login');
-                      },
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold),
-                      ))
-                ],
-              )
+              CustomRows(
+                  mainText: 'Already have an account?',
+                  pressText: 'Login',
+                  onpress: () => context.pushReplacement('/login'))
             ],
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:book/config/firebase/firebase_auth_services.dart';
 import 'package:book/presentation/widgets/appBars/app_bar_custom.dart';
 import 'package:book/presentation/widgets/forms/form_container_widget.dart';
 import 'package:book/presentation/widgets/gesture/gesture_detector.dart';
+import 'package:book/presentation/widgets/row/row.dart';
 import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with AppBarCustom {
+class _LoginScreenState extends State<LoginScreen>
+    with AppBarCustom, CustomGestureDetector {
   bool _isSigning = false;
   final FirebaseAuthService _auth = FirebaseAuthService();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -65,78 +67,27 @@ class _LoginScreenState extends State<LoginScreen> with AppBarCustom {
                       const SizedBox(
                         height: 10,
                       ),
-                      CustomGestureDetector(
-                        onpress: () => _signIn(context),
-                        isSigning: _isSigning,
-                        displayText: 'Login',
-                      ),
+                      iconlessGestureDetector(
+                          () => _signIn(context), _isSigning, 'Login'),
                       const SizedBox(
                         height: 10,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          _signInWithGoogle(context);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: 45,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: const Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.google,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "Sign in with Google",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      iconGestureDetector(() {
+                        _signInWithGoogle(context);
+                      }, "Sign in with google", FontAwesomeIcons.google),
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Don't have an account?"),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              context.pushReplacement('/signup');
-                            },
-                            child: const Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      CustomRows(
+                          mainText: "Don't have an account?",
+                          pressText: 'Sign Up',
+                          onpress: () => context.push('/signup'))
                     ]),
               ),
             )));
   }
 
-  Future<void> _signIn(BuildContext context) async {
+  void _signIn(BuildContext context) async {
     setState(() {
       _isSigning = true;
     });
@@ -148,17 +99,16 @@ class _LoginScreenState extends State<LoginScreen> with AppBarCustom {
 
     setState(() {
       _isSigning = false;
+      if (user != null) {
+        showToast(message: "User is successfully signed in");
+        if (context.mounted) context.pushReplacement('/home');
+      } else {
+        showToast(message: "some error occured");
+      }
     });
-
-    if (user != null) {
-      showToast(message: "User is successfully signed in");
-      if (context.mounted) context.pushReplacement('/home');
-    } else {
-      showToast(message: "some error occured");
-    }
   }
 
-  Future<void> _signInWithGoogle(BuildContext context) async {
+  void _signInWithGoogle(BuildContext context) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {

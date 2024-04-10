@@ -8,7 +8,7 @@ final List<RouteBase> routes = [
     builder: (context, state) => const SplashScreen(),
   ),
   GoRoute(
-    path: '/userlogin',
+    path: '/login',
     name: const LoginScreen().name,
     builder: (context, state) => const LoginScreen(),
   ),

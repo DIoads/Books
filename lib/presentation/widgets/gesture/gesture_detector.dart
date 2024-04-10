@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomGestureDetector extends StatelessWidget {
-  final String displayText;
-  final bool isSigning;
-  final VoidCallback onpress;
-  const CustomGestureDetector(
-      {super.key,
-      required this.onpress,
-      required this.isSigning,
-      required this.displayText});
-
-  @override
-  Widget build(BuildContext context) {
+mixin CustomGestureDetector {
+  iconlessGestureDetector(VoidCallback onpress, isLoading, displayText) {
     return GestureDetector(
       onTap: () {
-        onpress;
+        onpress.call();
       },
       child: Container(
         width: double.infinity,
@@ -24,7 +14,7 @@ class CustomGestureDetector extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
-          child: isSigning
+          child: isLoading
               ? const CircularProgressIndicator(
                   color: Colors.white,
                 )
@@ -35,6 +25,43 @@ class CustomGestureDetector extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+        ),
+      ),
+    );
+  }
+
+  iconGestureDetector(VoidCallback onpress, displayText, IconData icon) {
+    return GestureDetector(
+      onTap: () {
+        onpress.call();
+      },
+      child: Container(
+        width: double.infinity,
+        height: 45,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: Colors.white,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              const Text(
+                "Sign in with Google",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
