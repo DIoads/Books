@@ -11,17 +11,6 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // if (Platform.isAndroid) {
-  //   // Android-specific code
-  //   await Firebase.initializeApp(
-  //       options: const FirebaseOptions(
-  //           apiKey: 'AIzaSyAwKKRHhczuLCrYjmd91PlPdVutK8XhOGQ',
-  //           appId: '1:669283823826:android:03e17aca9cb42b0deafd0b',
-  //           messagingSenderId: '669283823826',
-  //           projectId: 'books-bac44'));
-  // } else if (Platform.isIOS) {
-  //   // iOS-specific code
-  // }
 
   runApp(const ProviderScope(
     child: MainApp(),
