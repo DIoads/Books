@@ -1,4 +1,4 @@
-import 'package:book/config/firebase/auth_services_interface.dart';
+import 'package:book/config/auth_services/auth_services_interface.dart';
 import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
