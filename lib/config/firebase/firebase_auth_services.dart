@@ -1,9 +1,10 @@
+import 'package:book/config/firebase/auth_services_interface.dart';
 import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FirebaseAuthService {
+class FirebaseAuthService extends AuthServicesInterface {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  @override
   Future<User?> signUpWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -20,6 +21,7 @@ class FirebaseAuthService {
     return null;
   }
 
+  @override
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
     try {
