@@ -1,4 +1,4 @@
-import 'package:book/config/auth_services/auth_services_interface.dart';
+import 'package:book/domain/auth/auth_services_interface.dart';
 import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -13,9 +13,10 @@ class FirebaseAuthService extends AuthServicesInterface {
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        showToast(message: 'The email address is already in use.');
+        showToast(
+            message: 'The email address is already in use.', textSize: 16);
       } else {
-        showToast(message: 'An error occurred: ${e.code}');
+        showToast(message: 'An error occurred: ${e.code}', textSize: 16);
       }
     }
     return null;
@@ -30,9 +31,9 @@ class FirebaseAuthService extends AuthServicesInterface {
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        showToast(message: 'Invalid email or password.');
+        showToast(message: 'Invalid email or password.', textSize: 16);
       } else {
-        showToast(message: 'An error occurred: ${e.code}');
+        showToast(message: 'An error occurred: ${e.code}', textSize: 16);
       }
     }
     return null;

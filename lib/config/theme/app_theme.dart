@@ -17,8 +17,10 @@ class AppTheme {
   final int selectedColor;
   final bool isDarkMode;
 
-  AppTheme({required this.selectedColor, required this.isDarkMode})
-      : assert(selectedColor >= 0 && selectedColor < colorList.length,
+  AppTheme({
+    required this.selectedColor,
+    required this.isDarkMode,
+  }) : assert(selectedColor >= 0 && selectedColor < colorList.length,
             'Elegir un valor entre el rango 0 y ${colorList.length - 1}');
 
   ThemeData getTheme() => ThemeData(
@@ -26,7 +28,11 @@ class AppTheme {
       colorSchemeSeed: colorList[selectedColor],
       brightness: isDarkMode ? Brightness.dark : Brightness.light,
       appBarTheme: const AppBarTheme(centerTitle: false));
-  AppTheme copyWith({int? selectedColor, bool? isDarkMode}) => AppTheme(
+  AppTheme copyWith({
+    int? selectedColor,
+    bool? isDarkMode,
+  }) =>
+      AppTheme(
         selectedColor: selectedColor ?? this.selectedColor,
         isDarkMode: isDarkMode ?? this.isDarkMode,
       );
