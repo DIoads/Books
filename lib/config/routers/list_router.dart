@@ -14,7 +14,7 @@ final List<RouteBase> routes = [
   ),
   GoRoute(
     path: '/home',
-    name: const HomeScreen().name,
+    name: HomeScreen.name,
     builder: (context, state) => const HomeScreen(),
   ),
   GoRoute(
