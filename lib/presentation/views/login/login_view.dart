@@ -1,22 +1,19 @@
 import 'package:book/infrastructure/auth/firebase_auth_services.dart';
-import 'package:book/presentation/widgets/forms/form_container_widget.dart';
-import 'package:book/presentation/widgets/gesture/gesture_detector.dart';
-import 'package:book/presentation/widgets/row/row.dart';
-import 'package:book/presentation/widgets/toast/toast.dart';
+import 'package:book/presentation/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class LogInForm extends StatefulWidget {
+  const LogInForm({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<LogInForm> createState() => _LogInFormState();
 }
 
-class _LoginViewState extends State<LoginView> with CustomGestureDetector {
+class _LogInFormState extends State<LogInForm> with CustomGestureDetector {
   bool _isSigning = false;
   final FirebaseAuthService _auth = FirebaseAuthService();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

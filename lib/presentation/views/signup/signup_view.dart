@@ -1,8 +1,5 @@
 import 'package:book/infrastructure/auth/firebase_auth_services.dart';
-import 'package:book/presentation/widgets/forms/form_container_widget.dart';
-import 'package:book/presentation/widgets/gesture/gesture_detector.dart';
-import 'package:book/presentation/widgets/row/row.dart';
-import 'package:book/presentation/widgets/toast/toast.dart';
+import 'package:book/presentation/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
