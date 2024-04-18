@@ -93,8 +93,6 @@ class _LogInFormState extends State<LogInForm> with CustomGestureDetector {
     if (user != null) {
       showToast(message: "User is successfully signed in", textSize: size);
       if (context.mounted) context.go('/home');
-    } else {
-      showToast(message: "some error occured", textSize: size);
     }
   }
 
