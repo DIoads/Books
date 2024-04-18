@@ -10,6 +10,8 @@ class FirebaseAuthService extends AuthServicesInterface {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      showToast(message: 'Account created successfully!.', textSize: 16);
+
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -23,11 +25,12 @@ class FirebaseAuthService extends AuthServicesInterface {
   }
 
   @override
-  Future<User?> signInWithEmailAndPassword(
-      String email, String password) async {
+  Future<User?> logInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential credential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      showToast(message: 'Log in successful!.', textSize: 16);
+
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {

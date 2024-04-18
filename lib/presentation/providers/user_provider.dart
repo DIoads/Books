@@ -1,6 +1,5 @@
 import 'package:book/domain/entities/user_entity.dart';
 import 'package:book/infrastructure/auth/firebase_auth_services.dart';
-import 'package:book/presentation/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,20 +12,17 @@ final userNotifierProvider = StateNotifierProvider<UserNotifier, MyUser>(
 class UserNotifier extends StateNotifier<MyUser> {
   late final MyUser currentUser;
   final FirebaseAuthService _auth = FirebaseAuthService();
-  get getUser => currentUser;
 
   UserNotifier() : super(MyUser());
 
   Future<void> logIn(
       BuildContext context, String email, String password) async {
-    final size = (MediaQuery.of(context).size.width / 24);
-
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    User? user = await _auth.logInWithEmailAndPassword(email, password);
 
     if (user != null) {
-      showToast(message: "User is successfully signed in", textSize: size);
       state =
           MyUser(userId: user.uid, name: user.displayName, eMail: user.email);
+
       if (context.mounted) context.go('/home');
     }
   }
