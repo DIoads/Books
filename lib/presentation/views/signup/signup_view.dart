@@ -93,8 +93,6 @@ class _SignupViewState extends State<SignupView> with CustomGestureDetector {
     if (user != null) {
       showToast(message: "User is successfully created", textSize: size);
       if (context.mounted) context.go('/home');
-    } else {
-      showToast(message: "Some error happend", textSize: size);
     }
   }
 }
