@@ -1,3 +1,5 @@
+import 'package:book/infrastructure/models/user.dart';
+
 abstract class UserRepository {
   Future<MyUser?> signUp(MyUser myUser, String password);
 
