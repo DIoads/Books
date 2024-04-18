@@ -20,7 +20,7 @@ class ThemeNotifier extends StateNotifier<AppTheme> {
   // STATE = Estado = new AppTheme();
   ThemeNotifier()
       : super(AppTheme(
-          selectedColor: 2,
+          selectedColor: 4,
           isDarkMode: false,
         ));
 

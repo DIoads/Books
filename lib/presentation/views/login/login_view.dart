@@ -1,29 +1,34 @@
-import 'package:book/infrastructure/auth/firebase_auth_services.dart';
+import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
-class LogInForm extends StatefulWidget {
+class LogInForm extends ConsumerStatefulWidget {
   const LogInForm({super.key});
 
   @override
-  State<LogInForm> createState() => _LogInFormState();
+  LogInFormState createState() => LogInFormState();
 }
 
-class _LogInFormState extends State<LogInForm> with CustomGestureDetector {
-  bool _isSigning = false;
-  final FirebaseAuthService _auth = FirebaseAuthService();
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+class LogInFormState extends ConsumerState<LogInForm>
+    with CustomGestureDetector {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // "ref" se puede utilizar en todos lo ciclos de vida de un StatefulWidget.
+    ref.read(userNotifierProvider);
   }
 
   @override
@@ -55,7 +60,10 @@ class _LogInFormState extends State<LogInForm> with CustomGestureDetector {
           const SizedBox(
             height: 10,
           ),
-          iconlessGestureDetector(() => _signIn(context), _isSigning, 'Login'),
+          iconlessnlGestureDetector(() {
+            ref.watch(userNotifierProvider.notifier).logIn(
+                context, _emailController.text, _passwordController.text);
+          }, 'Log In'),
           const SizedBox(
             height: 10,
           ),
@@ -73,54 +81,5 @@ class _LogInFormState extends State<LogInForm> with CustomGestureDetector {
         ]),
       ),
     );
-  }
-
-  Future<void> _signIn(BuildContext context) async {
-    final size = (MediaQuery.of(context).size.width / 24);
-
-    setState(() {
-      _isSigning = true;
-    });
-
-    String email = _emailController.text;
-    String password = _passwordController.text;
-
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
-
-    setState(() {
-      _isSigning = false;
-    });
-    if (user != null) {
-      showToast(message: "User is successfully signed in", textSize: size);
-      if (context.mounted) context.go('/home');
-      print(user.email);
-      print(user.displayName);
-    }
-  }
-
-  Future<void> _signInWithGoogle(BuildContext context) async {
-    final size = (MediaQuery.of(context).size.width / 24);
-
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn();
-
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
-
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken,
-        );
-
-        await _firebaseAuth.signInWithCredential(credential);
-        if (context.mounted) context.go('/home');
-      }
-    } catch (e) {
-      showToast(message: "some error occured $e", textSize: size);
-    }
   }
 }
