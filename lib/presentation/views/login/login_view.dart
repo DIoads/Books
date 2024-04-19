@@ -2,7 +2,6 @@ import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class LogInForm extends ConsumerStatefulWidget {
@@ -67,10 +66,6 @@ class LogInFormState extends ConsumerState<LogInForm>
           const SizedBox(
             height: 10,
           ),
-          iconGestureDetector(() {
-            // _signInWithGoogle(context);
-            // falta resolver error de google sign in.
-          }, "Sign in with google", FontAwesomeIcons.google),
           const SizedBox(
             height: 20,
           ),

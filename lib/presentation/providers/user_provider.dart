@@ -27,6 +27,12 @@ class UserNotifier extends StateNotifier<MyUser> {
     }
   }
 
+  Future<void> logOut(BuildContext context) async {
+    _auth.signOut();
+    context.go('/login');
+  }
+}
+
   // Future<void> _signInWithGoogle(BuildContext context) async {
   //   final size = (MediaQuery.of(context).size.width / 24);
 
@@ -52,4 +58,4 @@ class UserNotifier extends StateNotifier<MyUser> {
   //     showToast(message: "some error occured $e", textSize: size);
   //   }
   // }
-}
+

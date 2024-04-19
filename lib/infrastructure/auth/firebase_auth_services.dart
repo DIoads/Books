@@ -41,4 +41,9 @@ class FirebaseAuthService extends AuthServicesInterface {
     }
     return null;
   }
+
+  @override
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
 }
