@@ -27,6 +27,18 @@ class UserNotifier extends StateNotifier<MyUser> {
     }
   }
 
+  Future<void> signUp(
+      BuildContext context, String email, String password) async {
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      state =
+          MyUser(userId: user.uid, name: user.displayName, eMail: user.email);
+
+      if (context.mounted) context.go('/home');
+    }
+  }
+
   Future<void> logOut(BuildContext context) async {
     _auth.signOut();
     context.go('/login');

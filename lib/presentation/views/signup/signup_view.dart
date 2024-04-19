@@ -1,28 +1,32 @@
-import 'package:book/infrastructure/auth/firebase_auth_services.dart';
+import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class SignupView extends StatefulWidget {
+class SignupView extends ConsumerStatefulWidget {
   const SignupView({super.key});
 
   @override
-  State<SignupView> createState() => _SignupViewState();
+  SignupViewState createState() => SignupViewState();
 }
 
-class _SignupViewState extends State<SignupView> with CustomGestureDetector {
+class SignupViewState extends ConsumerState<SignupView>
+    with CustomGestureDetector {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final FirebaseAuthService _auth = FirebaseAuthService();
-
-  bool isSigningUp = false;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    ref.read(userNotifierProvider);
   }
 
   @override
@@ -59,9 +63,10 @@ class _SignupViewState extends State<SignupView> with CustomGestureDetector {
             const SizedBox(
               height: 30,
             ),
-            iconlessGestureDetector(() {
-              _signUp(context);
-            }, isSigningUp, 'Sign Up'),
+            iconlessnlGestureDetector(() {
+              ref.watch(userNotifierProvider.notifier).signUp(
+                  context, _emailController.text, _passwordController.text);
+            }, 'Sign Up'),
             const SizedBox(
               height: 20,
             ),
@@ -73,26 +78,5 @@ class _SignupViewState extends State<SignupView> with CustomGestureDetector {
         ),
       ),
     );
-  }
-
-  Future<void> _signUp(BuildContext context) async {
-    final size = (MediaQuery.of(context).size.width / 24);
-
-    setState(() {
-      isSigningUp = true;
-    });
-
-    String email = _emailController.text;
-    String password = _passwordController.text;
-
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
-
-    setState(() {
-      isSigningUp = false;
-    });
-    if (user != null) {
-      showToast(message: "User is successfully created", textSize: size);
-      if (context.mounted) context.go('/home');
-    }
   }
 }

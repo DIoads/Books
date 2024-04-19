@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget with CustomAppBar {
         child: Scaffold(
       appBar: appBarWithOutReturnButton(
           title: "Login", backgroundcolor: colors.onPrimary),
-      body: const LogInForm(),
+      body: const LogInView(),
     ));
   }
 }

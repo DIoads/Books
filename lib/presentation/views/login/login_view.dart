@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class LogInForm extends ConsumerStatefulWidget {
-  const LogInForm({super.key});
+class LogInView extends ConsumerStatefulWidget {
+  const LogInView({super.key});
 
   @override
   LogInFormState createState() => LogInFormState();
 }
 
-class LogInFormState extends ConsumerState<LogInForm>
+class LogInFormState extends ConsumerState<LogInView>
     with CustomGestureDetector {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -26,7 +26,6 @@ class LogInFormState extends ConsumerState<LogInForm>
   @override
   void initState() {
     super.initState();
-    // "ref" se puede utilizar en todos lo ciclos de vida de un StatefulWidget.
     ref.read(userNotifierProvider);
   }
 
