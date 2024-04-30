@@ -1,3 +1,4 @@
+import 'package:book/domain/auth/auth_services_interface.dart';
 import 'package:book/domain/entities/user_entity.dart';
 import 'package:book/infrastructure/auth/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +12,7 @@ final userNotifierProvider = StateNotifierProvider<UserNotifier, MyUser>(
 
 class UserNotifier extends StateNotifier<MyUser> {
   late final MyUser currentUser;
-  final FirebaseAuthService _auth = FirebaseAuthService();
+  final AuthServicesInterface _auth = FirebaseAuthService();
 
   UserNotifier() : super(MyUser());
 
