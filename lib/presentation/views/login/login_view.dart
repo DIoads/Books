@@ -24,13 +24,9 @@ class LogInFormState extends ConsumerState<LogInView>
   }
 
   @override
-  void initState() {
-    super.initState();
-    ref.read(userNotifierProvider);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final UserNotifier currentUser = ref.watch(userNotifierProvider.notifier);
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -59,7 +55,7 @@ class LogInFormState extends ConsumerState<LogInView>
             height: 10,
           ),
           iconlessnlGestureDetector(() {
-            ref.watch(userNotifierProvider.notifier).logIn(
+            currentUser.logIn(
                 context, _emailController.text, _passwordController.text);
           }, 'Log In'),
           const SizedBox(

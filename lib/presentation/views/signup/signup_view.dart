@@ -24,13 +24,9 @@ class SignupViewState extends ConsumerState<SignupView>
   }
 
   @override
-  void initState() {
-    super.initState();
-    ref.read(userNotifierProvider);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final UserNotifier currentUser = ref.watch(userNotifierProvider.notifier);
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -64,7 +60,7 @@ class SignupViewState extends ConsumerState<SignupView>
               height: 30,
             ),
             iconlessnlGestureDetector(() {
-              ref.watch(userNotifierProvider.notifier).signUp(
+              currentUser.signUp(
                   context, _emailController.text, _passwordController.text);
             }, 'Sign Up'),
             const SizedBox(
