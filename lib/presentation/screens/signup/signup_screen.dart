@@ -43,5 +43,3 @@ class _SignupView extends StatelessWidget {
     );
   }
 }
-//  mario@gmail.com
-//  123456

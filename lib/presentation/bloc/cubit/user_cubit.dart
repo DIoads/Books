@@ -14,36 +14,44 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> onSignUp(BuildContext context, String age, String email,
       String username, String password) async {
-    final FirebaseAuthService auth = FirebaseAuthService();
+    final AuthServicesInterface auth = state.auth;
 
     User? authUser = await auth.signUpWithEmailAndPassword(email, password);
     if (authUser != null) {
       MyUser currentUser = MyUser(age: age, email: email, userId: authUser.uid);
-      _currentUserChanged(currentUser, auth);
+      await _currentUserChanged(currentUser, auth);
 
       if (context.mounted) context.go('/home');
     }
   }
 
-  Future<void> onLogIn(BuildContext context, email, String password) async {
-    final FirebaseAuthService auth = FirebaseAuthService();
+  Future<void> onLogIn(
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
+    final AuthServicesInterface auth = state.auth;
     User? authUser = await auth.logInWithEmailAndPassword(email, password);
 
     if (authUser != null) {
-      MyUser currentUser = MyUser(email: email, userId: authUser.uid);
-      _currentUserChanged(currentUser, auth);
+      MyUser newUser = MyUser(email: email, userId: authUser.uid);
+
+      emit(UserState(currentUser: newUser, auth: auth));
+      await Future<void>.delayed(const Duration(milliseconds: 100));
+
+      print("${newUser.getEmail}${newUser.getUserId}");
+      print("${state.currentUser.getEmail}${state.currentUser.getUserId}");
       if (context.mounted) context.go('/home');
     }
   }
 
-  _currentUserChanged(MyUser myUser, FirebaseAuthService auth) {
-    emit(state.copyWith(currentUser: myUser, auth: auth));
+  Future<void> onLogOut(BuildContext context) async {
+    final AuthServicesInterface auth = state.auth;
+    await auth.signOut();
+    _currentUserChanged(MyUser(), auth);
+    if (context.mounted) context.go('/login');
   }
 
-  Future<void> onLogOut(BuildContext context) async {
-    final FirebaseAuthService auth = FirebaseAuthService();
-    auth.signOut();
-    emit(state.copyWith(currentUser: MyUser(), auth: auth));
-    context.go('/login');
+  _currentUserChanged(MyUser myUser, AuthServicesInterface auth) {
+    emit(state.copyWith(currentUser: myUser, auth: auth));
   }
 }

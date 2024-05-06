@@ -1,7 +1,6 @@
 import 'package:book/config/routers/app_router.dart';
 import 'package:book/config/theme/app_theme.dart';
 import 'package:book/firebase_options.dart';
-import 'package:book/presentation/providers/theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,17 +16,15 @@ Future main() async {
   ));
 }
 
-class MainApp extends ConsumerWidget {
+class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final AppTheme appTheme = ref.watch(themeNotifierProvider);
-
+  Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: appTheme.getTheme(),
-      debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme().getTheme(),
     );
   }
 }

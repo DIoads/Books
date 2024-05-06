@@ -10,16 +10,16 @@ class UserState extends Equatable {
   UserState(
       {this.formStatus = FormStatus.invalid,
       MyUser? currentUser,
-      FirebaseAuthService? auth});
+      AuthServicesInterface? auth});
 
   UserState copyWith(
           {FormStatus? formStatus,
           MyUser? currentUser,
-          FirebaseAuthService? auth}) =>
+          AuthServicesInterface? auth}) =>
       UserState(
           formStatus: formStatus ?? this.formStatus,
           currentUser: currentUser ?? this.currentUser,
-          auth: auth);
+          auth: auth ?? this.auth);
 
   @override
   List<Object> get props => [formStatus, currentUser];
