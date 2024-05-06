@@ -1,29 +1,37 @@
 import 'dart:convert';
 
-UserModel userFromJson(String str) => UserModel.fromJson(json.decode(str));
+UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
-String userToJson(UserModel data) => json.encode(data.toJson());
+String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
-  String userId;
-  String eMail;
-  String name;
+  String age;
+  String email;
+  List<String> favGenres;
+  String imageUrl;
+  String username;
 
   UserModel({
-    required this.userId,
-    required this.eMail,
-    required this.name,
+    required this.age,
+    required this.email,
+    required this.favGenres,
+    required this.imageUrl,
+    required this.username,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        userId: json["userId"],
-        eMail: json["eMail"],
-        name: json["name"],
+        age: json["age"],
+        email: json["email"],
+        favGenres: List<String>.from(json["favGenres"].map((x) => x)),
+        imageUrl: json["imageURL"],
+        username: json["username"],
       );
 
   Map<String, dynamic> toJson() => {
-        "userId": userId,
-        "eMail": eMail,
-        "name": name,
+        "age": age,
+        "email": email,
+        "favGenres": List<dynamic>.from(favGenres.map((x) => x)),
+        "imageURL": imageUrl,
+        "username": username,
       };
 }

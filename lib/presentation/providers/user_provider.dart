@@ -20,8 +20,7 @@ class UserNotifier extends StateNotifier<MyUser> {
     User? user = await _auth.logInWithEmailAndPassword(email, password);
 
     if (user != null) {
-      state =
-          MyUser(userId: user.uid, name: user.displayName, eMail: user.email);
+      state = MyUser(userId: user.uid);
 
       if (context.mounted) context.go('/home');
     }
@@ -32,8 +31,7 @@ class UserNotifier extends StateNotifier<MyUser> {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     if (user != null) {
-      state =
-          MyUser(userId: user.uid, name: user.displayName, eMail: user.email);
+      state = MyUser(userId: user.uid);
 
       if (context.mounted) context.go('/home');
     }
