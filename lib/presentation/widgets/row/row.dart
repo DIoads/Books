@@ -12,12 +12,13 @@ class CustomRows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = (MediaQuery.of(context).size.width / 77);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(mainText),
-        const SizedBox(
-          width: 5,
+        SizedBox(
+          width: size,
         ),
         GestureDetector(
           onTap: () {

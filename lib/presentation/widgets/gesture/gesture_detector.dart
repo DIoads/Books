@@ -66,4 +66,29 @@ mixin CustomGestureDetector {
       ),
     );
   }
+
+  iconlessnlGestureDetector(VoidCallback onpress, displayText) {
+    return GestureDetector(
+      onTap: () {
+        onpress.call();
+      },
+      child: Container(
+        width: double.infinity,
+        height: 45,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(
+            displayText,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
