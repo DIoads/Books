@@ -86,7 +86,7 @@ class RegisterFormState extends ConsumerState<SignUpForm> with Validators {
                       password: password,
                       userNotifier: userNotifier);
                 },
-                icon: const Icon(Icons.save),
+                icon: const Icon(Icons.app_registration),
                 label: const Text('Crear Cuenta')),
           ],
         ));

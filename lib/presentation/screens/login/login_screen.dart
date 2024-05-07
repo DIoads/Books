@@ -9,12 +9,11 @@ class LoginScreen extends StatelessWidget with CustomAppBar {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: appBarWithOutReturnButton(
           title: "Login", backgroundcolor: colors.onPrimary),
       body: const _LoginView(),
-    ));
+    );
   }
 }
 
@@ -28,13 +27,11 @@ class _LoginView extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              LogInForm(),
-              SizedBox(
-                height: 20,
-              )
-            ],
-          ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LogInForm(),
+              ]),
         ),
       ),
     );
