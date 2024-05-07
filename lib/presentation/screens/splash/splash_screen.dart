@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     Future.delayed(
       const Duration(seconds: 3),
-      () => context.pushReplacement('/login'),
+      () => context.go('/login'),
     );
     super.initState();
   }
