@@ -1,10 +1,31 @@
-import 'package:book/config/menu/menu_items.dart';
-import 'package:book/presentation/widgets/slideMenu/slide_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/widgets.dart';
 
-/*class HomeScreen extends StatelessWidget {
+void main() => runApp(const HomeScreen());
+
+class HomeScreen extends StatelessWidget {
+  final String name = "Home";
+
+  const HomeScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Material app',
+      home: Scaffold(
+        drawer: const Drawer(),
+        appBar: AppBar(
+          title: const Text('Knowledge Book'),
+        ),
+        body: const Center(
+          child: Text('hola'),
+        ),
+      ),
+    );
+  }
+}
+/*
+class HomeScreen extends StatelessWidget {
   final String name = "Home";
   const HomeScreen({super.key});
 
@@ -15,7 +36,7 @@ import 'package:go_router/go_router.dart';
     );
   }
 }*/
-
+/*
 class HomeScreen extends StatelessWidget {
   static const String name = 'home_screen';
   const HomeScreen({super.key});
@@ -58,3 +79,4 @@ class _CustomListTitle extends StatelessWidget {
     );
   }
 }
+*/

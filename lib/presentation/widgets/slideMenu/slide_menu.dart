@@ -2,7 +2,7 @@ import 'package:book/config/menu/menu_items.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SideMenu extends StatefulWidget {
+/*class SideMenu extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   const SideMenu({super.key, required this.scaffoldKey});
@@ -57,3 +57,4 @@ class _SideMenuState extends State<SideMenu> {
         ]);
   }
 }
+*/
