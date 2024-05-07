@@ -7,7 +7,7 @@ void showToast({required String message, required double textSize}) {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
-      backgroundColor: Colors.blue,
+      backgroundColor: const Color.fromARGB(255, 165, 10, 226),
       textColor: Colors.white,
       fontSize: textSize);
 }
