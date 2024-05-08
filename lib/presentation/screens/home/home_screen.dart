@@ -1,9 +1,9 @@
-
 import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget with CustomAppBar {
   final String name = "Home";
@@ -55,26 +55,22 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
             const SizedBox(
               height: 40,
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Inicio'),
-                SizedBox(
-                  width: 20,
-                ),
-                Text('Recomendación'),
-                SizedBox(
-                  width: 20,
-                ),
-                Text('Busqueda')
-              ],
-            ),
+            ButtonsRow(
+                goHome: () => goHome(context),
+                goRecommended: () => goRecommended(),
+                goSearch: () => goSearch())
           ],
         )),
       ),
     );
   }
 
+  void goHome(BuildContext context) {
+    context.go('/home');
+  }
+
+  void goRecommended() {}
+  void goSearch() {}
   logout({required BuildContext context, required UserNotifier userNotifier}) {
     userNotifier.logOut(context);
   }

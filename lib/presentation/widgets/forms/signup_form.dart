@@ -2,6 +2,7 @@ import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpForm extends ConsumerStatefulWidget {
   /// Es un formulario customizado [ Form ] que extiende de un widget de tipo [ StatefulWidget ]
@@ -88,6 +89,10 @@ class RegisterFormState extends ConsumerState<SignUpForm> with Validators {
                 },
                 icon: const Icon(Icons.app_registration),
                 label: const Text('Crear Cuenta')),
+            AuthFormRow(
+                mainText: "Already have an account?",
+                pressText: 'Log In',
+                onpress: () => context.push('/login'))
           ],
         ));
   }

@@ -68,7 +68,7 @@ class LogInFormState extends ConsumerState<LogInForm> with Validators {
                 },
                 icon: const Icon(Icons.login),
                 label: const Text('Iniciar Sesion.')),
-            CustomRows(
+            AuthFormRow(
                 mainText: "Don't have an account?",
                 pressText: 'Sign Up',
                 onpress: () => context.push('/signup'))
