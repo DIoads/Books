@@ -1,18 +1,18 @@
+import 'package:book/infrastructure/models/user.dart';
+
 class MyUser {
-  String? age;
-  String? email;
+  String age;
+  String email;
   List<String>? favGenres;
   String? imageUrl;
-  String? username;
-  String? userId;
+  String username;
 
   MyUser({
-    this.age,
-    this.email,
+    required this.age,
+    required this.email,
     this.favGenres,
     this.imageUrl,
-    this.username,
-    this.userId,
+    required this.username,
   });
 
   String? get getAge => age;
@@ -20,7 +20,6 @@ class MyUser {
   List<String>? get getFavGenres => favGenres;
   String? get gerImageUrl => imageUrl;
   String? get getUsername => username;
-  String? get getUserId => userId;
 
   set setAge(String age) {
     this.age = age;
@@ -42,7 +41,6 @@ class MyUser {
     this.username = username;
   }
 
-  set setUserId(String userId) {
-    this.userId = userId;
-  }
+  UserModel toUserModel() => UserModel(
+      age: age, email: email, favGenres: [], imageUrl: "", username: username);
 }

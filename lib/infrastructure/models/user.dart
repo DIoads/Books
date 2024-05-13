@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:book/domain/entities/user_entity.dart';
+
 UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
 String userModelToJson(UserModel data) => json.encode(data.toJson());
@@ -34,4 +36,11 @@ class UserModel {
         "imageURL": imageUrl,
         "username": username,
       };
+
+  MyUser toMyUserEntity() => MyUser(
+      age: age,
+      email: email,
+      favGenres: favGenres,
+      imageUrl: imageUrl,
+      username: username);
 }

@@ -1,7 +1,5 @@
-import 'package:book/presentation/bloc/cubit/user_cubit.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupScreen extends StatelessWidget with CustomAppBar {
   final String name = "Signup";
@@ -14,10 +12,7 @@ class SignupScreen extends StatelessWidget with CustomAppBar {
     return Scaffold(
         appBar: appBarWithReturnButton(
             title: name, backgroundcolor: colors.onPrimary),
-        body: BlocProvider(
-          create: (context) => UserCubit(),
-          child: const _SignupView(),
-        ));
+        body: const _SignupView());
   }
 }
 

@@ -99,6 +99,11 @@ class RegisterFormState extends ConsumerState<SignUpForm> with Validators {
       required String password,
       required UserNotifier userNotifier}) async {
     _fromKey.currentState?.validate();
-    await userNotifier.signUp(context, email, password);
+    await userNotifier.signUp(
+        age: age,
+        context: context,
+        email: email,
+        password: password,
+        username: username);
   }
 }

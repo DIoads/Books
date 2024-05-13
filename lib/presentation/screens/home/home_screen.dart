@@ -59,7 +59,6 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
 import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends StatelessWidget with CustomAppBar {
@@ -78,7 +77,7 @@ class HomeScreen extends StatelessWidget with CustomAppBar {
 }
 
 class _HomeView extends ConsumerWidget with CustomGestureDetector {
-  const _HomeView({super.key});
+  const _HomeView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
