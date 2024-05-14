@@ -53,20 +53,10 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
             const SizedBox(
               height: 40,
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Inicio'),
-                SizedBox(
-                  width: 20,
-                ),
-                Text('Recomendación'),
-                SizedBox(
-                  width: 20,
-                ),
-                Text('Busqueda')
-              ],
-            ),
+            ButtonsRow(
+                goHome: () => goHome(context),
+                goRecommended: () => goRecommended(),
+                goSearch: () => goSearch())
           ],
         )),
       ),
