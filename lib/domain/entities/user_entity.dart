@@ -1,4 +1,4 @@
-import 'package:book/infrastructure/models/user.dart';
+import 'package:book/infrastructure/models/user_model.dart';
 
 class MyUser {
   String age;
