@@ -1,7 +1,7 @@
 import 'package:book/domain/entities/user_entity.dart';
 
 abstract class UserRepository {
-  Future<MyUser> getUserInfo(String uid);
+  Future<UserEntity> getUserInfo(String uid);
 
-  createUser({required MyUser user, required String uid});
+  createUser({required UserEntity user, required String uid});
 }

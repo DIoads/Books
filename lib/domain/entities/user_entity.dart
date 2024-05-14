@@ -1,12 +1,12 @@
 import 'package:book/infrastructure/models/user_model.dart';
 
-class MyUser {
+class UserEntity {
   String age;
   List<String>? favGenres;
   String? imageUrl;
   String username;
 
-  MyUser({
+  UserEntity({
     required this.age,
     this.favGenres,
     this.imageUrl,
