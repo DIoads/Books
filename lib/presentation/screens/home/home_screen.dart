@@ -1,61 +1,3 @@
-/*import 'package:book/presentation/providers/user_provider.dart';
-import 'package:book/presentation/widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-class HomeScreen extends StatelessWidget with CustomAppBar {
-  final String name = "Home";
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-
-    return Scaffold(
-        appBar: appBarWithOutReturnButton(
-            title: name, backgroundcolor: colors.onPrimary),
-        body: const _HomeView());
-  }
-}
-
-class _HomeView extends ConsumerWidget with CustomGestureDetector {
-  const _HomeView();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
-
-    return Scaffold(
-      drawer: const Drawer(),
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              style: const TextStyle(fontSize: 20),
-              '${userNotifier.currentUser.getEmail}',
-              textAlign: TextAlign.right,
-            ),
-          ],
-        ),
-      ),
-      body: Center(
-          child: Column(
-        children: [
-          iconlessnlGestureDetector(() {
-            logout(userNotifier, context);
-          }, 'Log Out'),
-        ],
-      )),
-    );
-  }
-
-  logout(UserNotifier userNotifier, BuildContext context) {
-    userNotifier.logOut(context);
-  }
-}
- */
-
 import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +23,7 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String? email = ref.watch(userNotifierProvider).getEmail;
+    final String? email = ref.watch(userNotifierProvider).getUsername;
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
 
     return Padding(

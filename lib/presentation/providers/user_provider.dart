@@ -16,7 +16,7 @@ class UserNotifier extends StateNotifier<MyUser> {
   final AuthServicesInterface _auth = FirebaseAuthService();
   final _userRepo = UserRepositoryImpl();
 
-  UserNotifier() : super(MyUser(age: '', email: '', username: ''));
+  UserNotifier() : super(MyUser(age: '', username: ''));
 
   Future<void> logIn(
       {required BuildContext context,
@@ -26,7 +26,6 @@ class UserNotifier extends StateNotifier<MyUser> {
 
     if (user != null) {
       state = MyUser(
-        email: email,
         age: '',
         username: '',
       );
@@ -44,7 +43,7 @@ class UserNotifier extends StateNotifier<MyUser> {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     if (user != null) {
-      state = MyUser(email: email, age: age, username: username);
+      state = MyUser(age: age, username: username);
       await _userRepo.createUser(user: state, uid: user.uid);
 
       if (context.mounted) context.go('/home');
@@ -53,7 +52,7 @@ class UserNotifier extends StateNotifier<MyUser> {
 
   Future<void> logOut(BuildContext context) async {
     _auth.signOut();
-    state = MyUser(age: '', email: '', username: '');
+    state = MyUser(age: '', username: '');
     context.go('/login');
   }
 }

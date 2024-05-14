@@ -8,14 +8,12 @@ String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
   String age;
-  String email;
   List<String> favGenres;
   String imageUrl;
   String username;
 
   UserModel({
     required this.age,
-    required this.email,
     required this.favGenres,
     required this.imageUrl,
     required this.username,
@@ -23,7 +21,6 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         age: json["age"],
-        email: json["email"],
         favGenres: List<String>.from(json["favGenres"].map((x) => x)),
         imageUrl: json["imageURL"],
         username: json["username"],
@@ -31,16 +28,11 @@ class UserModel {
 
   Map<String, dynamic> toJson() => {
         "age": age,
-        "email": email,
         "favGenres": List<dynamic>.from(favGenres.map((x) => x)),
         "imageURL": imageUrl,
         "username": username,
       };
 
   MyUser toMyUserEntity() => MyUser(
-      age: age,
-      email: email,
-      favGenres: favGenres,
-      imageUrl: imageUrl,
-      username: username);
+      age: age, favGenres: favGenres, imageUrl: imageUrl, username: username);
 }
