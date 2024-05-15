@@ -19,12 +19,28 @@ class HomeScreen extends StatelessWidget with CustomAppBar {
   }
 }
 
-class _HomeView extends ConsumerWidget with CustomGestureDetector {
+class _HomeView extends ConsumerStatefulWidget {
   const _HomeView();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final String? email = ref.watch(userNotifierProvider).getUsername;
+  HomeViewState createState() => HomeViewState();
+}
+
+class HomeViewState extends ConsumerState<_HomeView>
+    with CustomGestureDetector {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final String? userName = ref.watch(userNotifierProvider).getUsername;
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
 
     return Padding(
@@ -37,7 +53,7 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
             children: [
               Text(
                 style: const TextStyle(fontSize: 20),
-                '$email',
+                '$userName',
                 textAlign: TextAlign.right,
               ),
             ],
@@ -73,5 +89,6 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
   }
 
   void goRecommended() {}
+
   void goSearch() {}
 }

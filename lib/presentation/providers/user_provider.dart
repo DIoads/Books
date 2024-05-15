@@ -52,6 +52,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
   Future<void> logOut(BuildContext context) async {
     _auth.signOut();
     state = UserEntity(age: '', username: '');
+//    super.dispose();
     context.go('/login');
   }
 }

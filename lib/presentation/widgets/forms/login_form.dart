@@ -85,5 +85,3 @@ class LogInFormState extends ConsumerState<LogInForm> with Validators {
         email: email, password: password, context: context);
   }
 }
-//  mario@gmail.com
-//  123456
