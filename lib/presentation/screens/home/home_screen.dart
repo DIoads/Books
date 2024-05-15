@@ -57,7 +57,7 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
             ),
             ButtonsRow(
                 goHome: () => goHome(context),
-                goRecommended: () => goRecommended(),
+                goRecommended: () => goRecommended(context),
                 goSearch: () => goSearch())
           ],
         )),
@@ -69,7 +69,10 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
     context.go('/home');
   }
 
-  void goRecommended() {}
+  void goRecommended(BuildContext context) {
+    context.go('/recomendacion');
+  }
+
   void goSearch() {}
   logout({required BuildContext context, required UserNotifier userNotifier}) {
     userNotifier.logOut(context);
