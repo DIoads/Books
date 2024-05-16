@@ -2,7 +2,7 @@ import 'package:book/domain/auth/auth_services_interface.dart';
 import 'package:book/presentation/widgets/toast/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FirebaseAuthService extends AuthServicesInterface {
+class FirebaseAuthService implements AuthServicesInterface {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Future<User?> signUpWithEmailAndPassword(

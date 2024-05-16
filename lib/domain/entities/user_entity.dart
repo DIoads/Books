@@ -3,19 +3,19 @@ import 'package:book/infrastructure/models/user_model.dart';
 class UserEntity {
   String age;
   List<String>? favGenres;
-  String? imageUrl;
+  String? imageURL;
   String username;
 
   UserEntity({
     required this.age,
     this.favGenres,
-    this.imageUrl,
+    this.imageURL,
     required this.username,
   });
 
   String? get getAge => age;
   List<String>? get getFavGenres => favGenres;
-  String? get gerImageUrl => imageUrl;
+  String? get gerImageUrl => imageURL;
   String? get getUsername => username;
 
   set setAge(String age) {
@@ -27,7 +27,7 @@ class UserEntity {
   }
 
   set setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
+    this.imageURL = imageUrl;
   }
 
   set setUsername(String username) {
@@ -35,5 +35,5 @@ class UserEntity {
   }
 
   UserModel toUserModel() =>
-      UserModel(age: age, favGenres: [], imageUrl: "", username: username);
+      UserModel(age: age, favGenres: [], imageURL: "", username: username);
 }

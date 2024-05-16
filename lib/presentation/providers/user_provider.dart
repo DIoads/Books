@@ -12,7 +12,6 @@ final userNotifierProvider = StateNotifierProvider<UserNotifier, UserEntity>(
 );
 
 class UserNotifier extends StateNotifier<UserEntity> {
-  late final UserEntity currentUser;
   final AuthServicesInterface _auth = FirebaseAuthService();
   final _userRepo = UserRepositoryImpl();
 
@@ -25,9 +24,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
     User? user = await _auth.logInWithEmailAndPassword(email, password);
 
     if (user != null) {
-      currentUser = await _userRepo.getUserInfo(user.uid);
-
-      state = currentUser;
+      state = await _userRepo.getUserInfo(user.uid);
 
       if (context.mounted) context.go('/home');
     }

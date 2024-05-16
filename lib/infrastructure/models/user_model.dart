@@ -10,41 +10,41 @@ String userModelToJson(UserModel data) => json.encode(data.toJson());
 class UserModel {
   String age;
   List<String> favGenres;
-  String imageUrl;
+  String imageURL;
   String username;
 
   UserModel({
     required this.age,
     required this.favGenres,
-    this.imageUrl = "",
+    this.imageURL = "",
     required this.username,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         age: json["age"],
         favGenres: List<String>.from(json["favGenres"].map((x) => x)),
-        imageUrl: json["imageURL"],
+        imageURL: json["imageURL"],
         username: json["username"],
       );
 
   Map<String, dynamic> toJson() => {
         "age": age,
         "favGenres": List<dynamic>.from(favGenres.map((x) => x)),
-        "imageURL": imageUrl,
+        "imageURL": imageURL,
         "username": username,
       };
 
   UserEntity toMyUserEntity() => UserEntity(
-      age: age, favGenres: favGenres, imageUrl: imageUrl, username: username);
+      age: age, favGenres: favGenres, imageURL: imageURL, username: username);
 
-  factory UserModel.fromSnapShot(
+  factory UserModel.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options) {
     final data = snapshot.data();
     return UserModel(
         age: data?['age'],
         favGenres: List<String>.from(data?["favGenres"].map((x) => x)),
-        imageUrl: data?['imageURL'],
+        imageURL: data?['imageURL'],
         username: data?['username']);
   }
 }
