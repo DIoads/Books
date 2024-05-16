@@ -2,7 +2,6 @@ import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget with CustomAppBar {
   final String name = "Home";
@@ -71,9 +70,8 @@ class HomeViewState extends ConsumerState<_HomeView>
               height: 40,
             ),
             ButtonsRow(
-                goHome: () => goHome(context),
-                goRecommended: () => goRecommended(),
-                goSearch: () => goSearch())
+              context: context,
+            )
           ],
         )),
       ),
@@ -83,12 +81,4 @@ class HomeViewState extends ConsumerState<_HomeView>
   logout({required BuildContext context, required UserNotifier userNotifier}) {
     userNotifier.logOut(context);
   }
-
-  void goHome(BuildContext context) {
-    context.go('/home');
-  }
-
-  void goRecommended() {}
-
-  void goSearch() {}
 }

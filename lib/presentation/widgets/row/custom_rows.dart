@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomRows extends StatelessWidget {
   final String mainText;
@@ -38,15 +39,11 @@ class CustomRows extends StatelessWidget {
 }
 
 class ButtonsRow extends StatelessWidget {
-  final VoidCallback goHome;
-  final VoidCallback goRecommended;
-  final VoidCallback goSearch;
+  final BuildContext context;
 
   const ButtonsRow({
     super.key,
-    required this.goHome,
-    required this.goRecommended,
-    required this.goSearch,
+    required this.context,
   });
 
   @override
@@ -57,7 +54,7 @@ class ButtonsRow extends StatelessWidget {
         TextButton(
           child: const Text('inicio'),
           onPressed: () {
-            goHome.call();
+            context.go('/home');
           },
         ),
         const SizedBox(
@@ -66,7 +63,7 @@ class ButtonsRow extends StatelessWidget {
         TextButton(
           child: const Text('Recomendaciones'),
           onPressed: () {
-            goRecommended.call();
+            context.go('/recommendations');
           },
         ),
         const SizedBox(
@@ -75,7 +72,7 @@ class ButtonsRow extends StatelessWidget {
         TextButton(
           child: const Text('Busqueda'),
           onPressed: () {
-            goSearch.call();
+            // context.go('/search');
           },
         ),
       ],

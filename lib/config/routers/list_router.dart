@@ -22,4 +22,9 @@ final List<RouteBase> routes = [
     name: const SignupScreen().name,
     builder: (context, state) => const SignupScreen(),
   ),
+  GoRoute(
+    path: '/recommendations',
+    name: const RecommendationsScreen().name,
+    builder: (context, state) => const RecommendationsScreen(),
+  ),
 ];
