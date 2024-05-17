@@ -1,13 +1,13 @@
-class BuyLink {
+class BuyLinkModel {
   String name;
   String url;
 
-  BuyLink({
+  BuyLinkModel({
     required this.name,
     required this.url,
   });
 
-  factory BuyLink.fromJson(Map<String, dynamic> json) => BuyLink(
+  factory BuyLinkModel.fromJson(Map<String, dynamic> json) => BuyLinkModel(
         name: json["name"],
         url: json["url"],
       );

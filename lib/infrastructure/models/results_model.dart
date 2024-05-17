@@ -1,14 +1,14 @@
 import 'package:book/infrastructure/models/list_model.dart';
 
-class Results {
+class ResultsModel {
   DateTime bestsellersDate;
   DateTime publishedDate;
   String publishedDateDescription;
   DateTime previousPublishedDate;
   String nextPublishedDate;
-  List<ListElement> lists;
+  List<ListElementModel> lists;
 
-  Results({
+  ResultsModel({
     required this.bestsellersDate,
     required this.publishedDate,
     required this.publishedDateDescription,
@@ -17,14 +17,14 @@ class Results {
     required this.lists,
   });
 
-  factory Results.fromJson(Map<String, dynamic> json) => Results(
+  factory ResultsModel.fromJson(Map<String, dynamic> json) => ResultsModel(
         bestsellersDate: DateTime.parse(json["bestsellers_date"]),
         publishedDate: DateTime.parse(json["published_date"]),
         publishedDateDescription: json["published_date_description"],
         previousPublishedDate: DateTime.parse(json["previous_published_date"]),
         nextPublishedDate: json["next_published_date"],
-        lists: List<ListElement>.from(
-            json["lists"].map((x) => ListElement.fromJson(x))),
+        lists: List<ListElementModel>.from(
+            json["lists"].map((x) => ListElementModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

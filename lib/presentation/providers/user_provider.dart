@@ -7,15 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-final userNotifierProvider = StateNotifierProvider<UserNotifier, UserEntity>(
+final userNotifierProvider =
+    StateNotifierProvider<UserNotifier, UserEntityEntity>(
   (ref) => UserNotifier(),
 );
 
-class UserNotifier extends StateNotifier<UserEntity> {
+class UserNotifier extends StateNotifier<UserEntityEntity> {
   final AuthServicesInterface _auth = FirebaseAuthService();
   final _userRepo = UserRepositoryImpl();
 
-  UserNotifier() : super(UserEntity(age: '', username: ''));
+  UserNotifier() : super(UserEntityEntity(age: '', username: ''));
 
   Future<void> logIn(
       {required BuildContext context,
@@ -39,7 +40,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     if (user != null) {
-      state = UserEntity(age: age, username: username);
+      state = UserEntityEntity(age: age, username: username);
       await _userRepo.createUser(user: state, uid: user.uid);
 
       if (context.mounted) context.go('/home');
@@ -48,7 +49,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
 
   Future<void> logOut(BuildContext context) async {
     _auth.signOut();
-    state = UserEntity(age: '', username: '');
+    state = UserEntityEntity(age: '', username: '');
 //    super.dispose();
     context.go('/login');
   }

@@ -1,6 +1,6 @@
 import 'package:book/infrastructure/models/book_model.dart';
 
-class ListElement {
+class ListElementModel {
   int listId;
   String listName;
   String listNameEncoded;
@@ -9,9 +9,9 @@ class ListElement {
   dynamic listImage;
   dynamic listImageWidth;
   dynamic listImageHeight;
-  List<Book> books;
+  List<BookModel> books;
 
-  ListElement({
+  ListElementModel({
     required this.listId,
     required this.listName,
     required this.listNameEncoded,
@@ -23,7 +23,8 @@ class ListElement {
     required this.books,
   });
 
-  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
+  factory ListElementModel.fromJson(Map<String, dynamic> json) =>
+      ListElementModel(
         listId: json["list_id"],
         listName: json["list_name"],
         listNameEncoded: json["list_name_encoded"],
@@ -32,7 +33,8 @@ class ListElement {
         listImage: json["list_image"],
         listImageWidth: json["list_image_width"],
         listImageHeight: json["list_image_height"],
-        books: List<Book>.from(json["books"].map((x) => Book.fromJson(x))),
+        books: List<BookModel>.from(
+            json["books"].map((x) => BookModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

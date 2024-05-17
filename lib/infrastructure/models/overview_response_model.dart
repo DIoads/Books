@@ -2,31 +2,31 @@ import 'dart:convert';
 
 import 'package:book/infrastructure/models/results_model.dart';
 
-OverviewResponse overviewResponseFromJson(String str) =>
-    OverviewResponse.fromJson(json.decode(str));
+OverviewResponseModel overviewResponseFromJson(String str) =>
+    OverviewResponseModel.fromJson(json.decode(str));
 
-String overviewResponseToJson(OverviewResponse data) =>
+String overviewResponseToJson(OverviewResponseModel data) =>
     json.encode(data.toJson());
 
-class OverviewResponse {
+class OverviewResponseModel {
   String status;
   String copyright;
   int numResults;
-  Results results;
+  ResultsModel results;
 
-  OverviewResponse({
+  OverviewResponseModel({
     required this.status,
     required this.copyright,
     required this.numResults,
     required this.results,
   });
 
-  factory OverviewResponse.fromJson(Map<String, dynamic> json) =>
-      OverviewResponse(
+  factory OverviewResponseModel.fromJson(Map<String, dynamic> json) =>
+      OverviewResponseModel(
         status: json["status"],
         copyright: json["copyright"],
         numResults: json["num_results"],
-        results: Results.fromJson(json["results"]),
+        results: ResultsModel.fromJson(json["results"]),
       );
 
   Map<String, dynamic> toJson() => {

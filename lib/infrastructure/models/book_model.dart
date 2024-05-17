@@ -1,6 +1,6 @@
 import 'package:book/infrastructure/models/buy_link_model.dart';
 
-class Book {
+class BookModel {
   String ageGroup;
   String amazonProductUrl;
   String articleChapterLink;
@@ -25,9 +25,9 @@ class Book {
   String title;
   DateTime updatedDate;
   int weeksOnList;
-  List<BuyLink> buyLinks;
+  List<BuyLinkModel> buyLinks;
 
-  Book({
+  BookModel({
     required this.ageGroup,
     required this.amazonProductUrl,
     required this.articleChapterLink,
@@ -55,7 +55,7 @@ class Book {
     required this.buyLinks,
   });
 
-  factory Book.fromJson(Map<String, dynamic> json) => Book(
+  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
         ageGroup: json["age_group"],
         amazonProductUrl: json["amazon_product_url"],
         articleChapterLink: json["article_chapter_link"],
@@ -80,8 +80,8 @@ class Book {
         title: json["title"],
         updatedDate: DateTime.parse(json["updated_date"]),
         weeksOnList: json["weeks_on_list"],
-        buyLinks: List<BuyLink>.from(
-            json["buy_links"].map((x) => BuyLink.fromJson(x))),
+        buyLinks: List<BuyLinkModel>.from(
+            json["buy_links"].map((x) => BuyLinkModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
