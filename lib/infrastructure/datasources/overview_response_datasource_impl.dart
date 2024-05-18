@@ -8,7 +8,7 @@ class OverviewResponseDatasourceImpl extends OverviewResponseDatasource {
   final dio = Dio(BaseOptions(
       baseUrl: 'https://api.nytimes.com/svc/books/v3',
       queryParameters: {
-        'api_key': 'Hrnuk9MgMV7QoFeRZqYEG5adeb2AisTP',
+        'api-key': 'Hrnuk9MgMV7QoFeRZqYEG5adeb2AisTP',
       }));
 
   OverviewResponseEntity _jsonToOverviewResponseEntity(

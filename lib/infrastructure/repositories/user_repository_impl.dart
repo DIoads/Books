@@ -8,7 +8,7 @@ class UserRepositoryImpl implements UserRepository {
   final _db = FirebaseFirestore.instance;
 
   @override
-  createUser({required UserEntityEntity user, required String uid}) async {
+  createUser({required UserEntity user, required String uid}) async {
     await _db
         .collection("users")
         .doc(uid)
@@ -16,7 +16,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<UserEntityEntity> getUserInfo(String uid) async {
+  Future<UserEntity> getUserInfo(String uid) async {
     final ref = _db.collection("users").doc(uid).withConverter(
           fromFirestore: UserModel.fromFirestore,
           toFirestore: (UserModel user, _) => user.toJson(),

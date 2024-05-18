@@ -1,9 +1,9 @@
-class UserEntityEntity {
+class UserEntity {
   String age;
   String? imageURL;
   String username;
 
-  UserEntityEntity({
+  UserEntity({
     required this.age,
     this.imageURL,
     required this.username,

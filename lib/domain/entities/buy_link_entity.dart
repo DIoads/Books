@@ -13,4 +13,5 @@ class BuyLinkEntity {
     required this.name,
     required this.url,
   });
+  factory BuyLinkEntity.emptyLinks() => BuyLinkEntity(name: '', url: '');
 }
