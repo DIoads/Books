@@ -9,7 +9,7 @@ class LibroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Card Sample')),
+        appBar: AppBar(title: const Text('Libro (En construcción)')),
         body: const CardExample(),
       ),
     );
@@ -35,12 +35,12 @@ class CardExample extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 TextButton(
-                  child: const Text('BUY TICKETS'),
+                  child: const Text('Detalles'),
                   onPressed: () {/* ... */},
                 ),
                 const SizedBox(width: 8),
                 TextButton(
-                  child: const Text('LISTEN'),
+                  child: const Text('_'),
                   onPressed: () {/* ... */},
                 ),
                 const SizedBox(width: 8),

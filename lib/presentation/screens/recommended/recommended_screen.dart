@@ -7,10 +7,10 @@ class RecommendedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vertical & Horizontal Scroll Demo',
+      title: 'Vertical & Horizontal Scroll En construcción',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Vertical & Horizontal Scroll"),
+          title: const Text("Vertical & Horizontal En construcción"),
         ),
         body: Builder(builder: (context) {
           return const SingleChildScrollView(
