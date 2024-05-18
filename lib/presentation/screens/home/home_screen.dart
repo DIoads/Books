@@ -70,7 +70,7 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
   }
 
   void goRecommended(BuildContext context) {
-    context.go('/recomendacion');
+    context.go('/libro');
   }
 
   void goSearch() {}

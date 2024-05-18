@@ -1,3 +1,4 @@
+import 'package:book/presentation/screens/libro/libro_screen.dart';
 import 'package:book/presentation/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,7 +25,7 @@ final List<RouteBase> routes = [
   ),
   GoRoute(
     path: '/recomendacion',
-    name: const CardExampleApp().name,
-    builder: (context, state) => const CardExampleApp(),
+    name: const RecommendedScreen().name,
+    builder: (context, state) => const RecommendedScreen(),
   ),
 ];
