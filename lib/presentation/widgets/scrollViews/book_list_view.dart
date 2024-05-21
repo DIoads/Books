@@ -18,10 +18,15 @@ class BookListView extends ConsumerStatefulWidget {
 class BookListViewState extends ConsumerState<BookListView> {
   @override
   Widget build(BuildContext context) {
-    final ResultsEntity results =
+    final ResultsEntity? results =
         ref.watch(overviewResponseNotifierProvider).getResults;
+<<<<<<< HEAD
     final List<ListElementEntity> lists = results.getLists;
     final List<BookEntity> books = lists.first.getBooks;
+=======
+    final lists = results?.getLists!;
+    final books = lists.first.getBooks;
+>>>>>>> 617d9ffc2084a2054a400c3436a7f4e40f68d934
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
