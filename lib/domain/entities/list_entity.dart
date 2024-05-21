@@ -59,4 +59,14 @@ class ListElementEntity {
     required this.listImageHeight,
     required this.books,
   });
+  factory ListElementEntity.emptyList() => ListElementEntity(
+      listId: 0,
+      listName: '',
+      listNameEncoded: '',
+      displayName: '',
+      updated: '',
+      listImage: '',
+      listImageWidth: '',
+      listImageHeight: '',
+      books: [BookEntity.emptyBook()]);
 }

@@ -43,4 +43,12 @@ class ResultsEntity {
     required this.nextPublishedDate,
     required this.lists,
   });
+
+  factory ResultsEntity.emptyResults() => ResultsEntity(
+      bestsellersDate: DateTime.now(),
+      publishedDate: DateTime.now(),
+      publishedDateDescription: '',
+      previousPublishedDate: DateTime.now(),
+      nextPublishedDate: '',
+      lists: [ListElementEntity.emptyList()]);
 }

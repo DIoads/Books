@@ -1,3 +1,5 @@
+import 'package:book/domain/entities/book_entity.dart';
+import 'package:book/domain/entities/list_entity.dart';
 import 'package:book/domain/entities/results_entity.dart';
 import 'package:book/presentation/providers/overview_response_provider.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +20,15 @@ class BookListViewState extends ConsumerState<BookListView> {
   Widget build(BuildContext context) {
     final ResultsEntity results =
         ref.watch(overviewResponseNotifierProvider).getResults;
-    final lists = results.getLists;
-    final books = lists.getBooks;
+    final List<ListElementEntity> lists = results.getLists;
+    final List<BookEntity> books = lists.first.getBooks;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(children: [
         Expanded(
             child: ListView.builder(
-          itemCount: books.length(),
+          itemCount: books.length,
           itemBuilder: ((context, index) {
             return Text(books[index].getTitle);
           }),

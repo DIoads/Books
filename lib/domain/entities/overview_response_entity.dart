@@ -27,4 +27,10 @@ class OverviewResponseEntity {
     required this.numResults,
     required this.results,
   });
+
+  factory OverviewResponseEntity.emptyResponse() => OverviewResponseEntity(
+      status: '',
+      copyright: '',
+      numResults: 0,
+      results: ResultsEntity.emptyResults());
 }

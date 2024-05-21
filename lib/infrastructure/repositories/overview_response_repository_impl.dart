@@ -7,7 +7,8 @@ class OverviewResponseRepositoryImpl extends OverviewResponseRepository {
   OverviewResponseRepositoryImpl(this.datasource);
 
   @override
-  Future<OverviewResponseEntity> getOverViewResponse() {
-    return datasource.getBestSellersNow();
+  Future<OverviewResponseEntity> getOverViewResponse() async {
+    OverviewResponseEntity response = await datasource.getBestSellersNow();
+    return response;
   }
 }

@@ -69,9 +69,7 @@ class HomeViewState extends ConsumerState<_HomeView>
             const SizedBox(
               height: 40,
             ),
-            ButtonsRow(
-              context: context,
-            )
+            const ButtonsRow()
           ],
         )),
       ),
