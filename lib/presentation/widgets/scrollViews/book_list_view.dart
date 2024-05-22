@@ -1,6 +1,4 @@
-import 'package:book/domain/entities/book_entity.dart';
-import 'package:book/domain/entities/list_entity.dart';
-import 'package:book/domain/entities/results_entity.dart';
+import 'package:book/domain/entities/entities.dart';
 import 'package:book/presentation/providers/overview_response_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -18,10 +16,10 @@ class BookListView extends ConsumerStatefulWidget {
 class BookListViewState extends ConsumerState<BookListView> {
   @override
   Widget build(BuildContext context) {
-    final ResultsEntity? results =
+    final ResultsEntity results =
         ref.watch(overviewResponseNotifierProvider).getResults;
 
-    final List<ListElementEntity> lists = results?.getLists;
+    final List<ListElementEntity> lists = results.getLists;
     final List<BookEntity> books = lists.first.getBooks;
 
     return SingleChildScrollView(
