@@ -4,25 +4,6 @@ import 'package:book/infrastructure/datasources/overview_response_datasource_imp
 import 'package:book/infrastructure/repositories/overview_response_repository_impl.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// final overviewResponseNotifierProvider =
-//     StateNotifierProvider<OverviewResponseNotifier, OverviewResponseEntity>(
-//         (ref) {
-//   final responseRepo =
-//       OverviewResponseRepositoryImpl(OverviewResponseDatasourceImpl());
-//   return OverviewResponseNotifier(
-//       getResponse: responseRepo.getOverViewResponse);
-// });
-
-// typedef GetResponseCallBack = Future<OverviewResponseEntity> Function();
-
-// class OverviewResponseNotifier extends StateNotifier<OverviewResponseEntity> {
-//   final GetResponseCallBack getResponse;
-
-//   OverviewResponseNotifier({required this.getResponse})
-//       : super(OverviewResponseMapper.modelToEntity(
-//             OverviewResponseModel.fromJson({})));
-// }
-
 final overviewResponseNotifierProvider =
     StateNotifierProvider<OverviewResponseNotifier, OverviewResponseEntity>(
         (ref) => OverviewResponseNotifier());
