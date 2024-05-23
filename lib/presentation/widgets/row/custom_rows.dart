@@ -62,9 +62,9 @@ class ButtonsRow extends ConsumerWidget {
         ),
         TextButton(
           child: const Text('Recomendaciones'),
-          onPressed: () {
-            responseLoad(responseNotifier);
-            context.go('/recommendations');
+          onPressed: () async {
+            await responseLoad(responseNotifier);
+            if (context.mounted) context.go('/recommendations');
           },
         ),
         const SizedBox(
@@ -80,7 +80,7 @@ class ButtonsRow extends ConsumerWidget {
     );
   }
 
-  void responseLoad(OverviewResponseNotifier responseNotifier) async {
+  Future<void> responseLoad(OverviewResponseNotifier responseNotifier) async {
     await responseNotifier.initialLoad();
   }
 }
