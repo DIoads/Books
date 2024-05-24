@@ -1,3 +1,4 @@
+import 'package:book/config/constants/enviroment.dart';
 import 'package:book/domain/datasources/overview_response_datasource.dart';
 import 'package:book/domain/entities/overview_response_entity.dart';
 import 'package:book/infrastructure/mappers/overview_response_mapper.dart';
@@ -8,7 +9,7 @@ class OverviewResponseDatasourceImpl extends OverviewResponseDatasource {
   final dio = Dio(BaseOptions(
       baseUrl: 'https://api.nytimes.com/svc/books/v3',
       queryParameters: {
-        'api-key': 'Hrnuk9MgMV7QoFeRZqYEG5adeb2AisTP',
+        'api-key': Environment.bookKey,
       }));
 
   OverviewResponseEntity _jsonToOverviewResponseEntity(
