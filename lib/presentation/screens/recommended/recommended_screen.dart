@@ -3,6 +3,37 @@ import 'package:flutter/material.dart';
 class RecommendedScreen extends StatelessWidget {
   final String name = "recomendacion";
 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'flutter demo',
+      theme: ThemeData(
+        primaryColor: Colors.blue,
+      ),
+      home: RecommendedScreen(),
+    );
+  }
+}
+
+class Recomendation extends StatefulWidget {
+  const Recomendation({super.key});
+
+  @override
+  State<Recomendation> createState() => _RecomendationState();
+}
+
+class _RecomendationState extends State<Recomendation> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+/*
+
+class RecommendedScreen extends StatelessWidget {
+  final String name = "recomendacion";
+
   const RecommendedScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -44,3 +75,4 @@ class RecommendedScreen extends StatelessWidget {
     );
   }
 }
+*/

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   ThemeData getTheme() {
+    primarySwatch:
+    Colors.blue;
+    visualDensity:
+    VisualDensity.adaptivePlatformDensity;
     const seedColor = Colors.deepPurple;
 
     return ThemeData(
