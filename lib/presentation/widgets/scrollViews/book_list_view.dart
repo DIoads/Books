@@ -1,4 +1,4 @@
-import 'package:book/domain/entities/results_entity.dart';
+import 'package:book/domain/entities/entities.dart';
 import 'package:book/presentation/providers/overview_response_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,22 +16,32 @@ class BookListView extends ConsumerStatefulWidget {
 class BookListViewState extends ConsumerState<BookListView> {
   @override
   Widget build(BuildContext context) {
-    final ResultsEntity? results =
-        ref.watch(overviewResponseNotifierProvider).getResults;
-    final lists = results?.getLists!;
-    final books = lists.first.getBooks;
+    final scrollController = ScrollController();
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(children: [
-        Expanded(
-            child: ListView.builder(
-          itemCount: books.length(),
-          itemBuilder: ((context, index) {
-            return Text(books[index].getTitle);
-          }),
-        ))
-      ]),
-    );
+    final ResultsEntity results =
+        ref.watch(overviewResponseNotifierProvider).getResults;
+
+    final List<ListElementEntity> lists = results.getLists;
+    final List<BookEntity> books = lists.first.getBooks;
+
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return SingleChildScrollView(
+        controller: scrollController,
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          Expanded(
+              child: ListView.builder(
+            itemCount: books.length,
+            itemBuilder: ((context, index) {
+              return SizedBox(
+                  height: constraints.maxHeight,
+                  width: constraints.maxWidth / books.length,
+                  child: Text(books[index].getTitle));
+            }),
+          ))
+        ]),
+      );
+    });
   }
 }

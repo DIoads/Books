@@ -21,7 +21,7 @@ class OverviewResponseDatasourceImpl extends OverviewResponseDatasource {
 
   @override
   Future<OverviewResponseEntity> getBestSellersNow() async {
-    final response = await dio.get('/lists/overview.json');
+    final response = await dio.get('/lists/overview');
 
     return _jsonToOverviewResponseEntity(response.data);
   }

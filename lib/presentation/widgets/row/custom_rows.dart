@@ -1,4 +1,6 @@
+import 'package:book/presentation/providers/overview_response_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomRows extends StatelessWidget {
@@ -38,16 +40,14 @@ class CustomRows extends StatelessWidget {
   }
 }
 
-class ButtonsRow extends StatelessWidget {
-  final BuildContext context;
-
-  const ButtonsRow({
-    super.key,
-    required this.context,
-  });
+class ButtonsRow extends ConsumerWidget {
+  const ButtonsRow({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final responseNotifier =
+        ref.watch(overviewResponseNotifierProvider.notifier);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -62,8 +62,9 @@ class ButtonsRow extends StatelessWidget {
         ),
         TextButton(
           child: const Text('Recomendaciones'),
-          onPressed: () {
-            context.go('/recommendations');
+          onPressed: () async {
+            await responseLoad(responseNotifier);
+            if (context.mounted) context.go('/recommendations');
           },
         ),
         const SizedBox(
@@ -77,5 +78,9 @@ class ButtonsRow extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> responseLoad(OverviewResponseNotifier responseNotifier) async {
+    await responseNotifier.initialLoad();
   }
 }

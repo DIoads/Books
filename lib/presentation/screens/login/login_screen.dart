@@ -1,5 +1,4 @@
-import 'package:book/presentation/widgets/appBars/custom_app_bar.dart';
-import 'package:book/presentation/widgets/forms/login_form.dart';
+import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget with CustomAppBar {
