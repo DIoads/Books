@@ -1,4 +1,4 @@
-import 'package:book/presentation/widgets/scrollviews/list_view.dart';
+import 'package:book/presentation/widgets/scrollviews/list_list.dart';
 import 'package:flutter/material.dart';
 
 class RecommendedScreen extends StatelessWidget {
