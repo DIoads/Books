@@ -16,32 +16,24 @@ class BookListView extends ConsumerStatefulWidget {
 class BookListViewState extends ConsumerState<BookListView> {
   @override
   Widget build(BuildContext context) {
-    final scrollController = ScrollController();
-
     final ResultsEntity results =
         ref.watch(overviewResponseNotifierProvider).getResults;
 
     final List<ListElementEntity> lists = results.getLists;
     final List<BookEntity> books = lists.first.getBooks;
 
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      return SingleChildScrollView(
-        controller: scrollController,
-        scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          Expanded(
-              child: ListView.builder(
-            itemCount: books.length,
-            itemBuilder: ((context, index) {
-              return SizedBox(
-                  height: constraints.maxHeight,
-                  width: constraints.maxWidth / books.length,
-                  child: Text(books[index].getTitle));
-            }),
-          ))
-        ]),
-      );
-    });
+    return const SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        // ListView.builder(
+        //     itemCount: books.length,
+        //     itemBuilder: ((context, index) {
+        //       BookEntity book = books[index];
+        //       return Text(book.getTitle);
+        //     }))
+        Text('Libro1'), Text('Libro1'), Text('Libro1'), Text('Libro1'),
+        Text('Libro1'),
+      ]),
+    );
   }
 }

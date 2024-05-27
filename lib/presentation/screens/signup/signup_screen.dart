@@ -24,15 +24,13 @@ class _SignupView extends StatelessWidget {
     return const SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SignUpForm(),
-              SizedBox(
-                height: 20,
-              )
-            ],
-          ),
+        child: Column(
+          children: [
+            SignUpForm(),
+            SizedBox(
+              height: 20,
+            )
+          ],
         ),
       ),
     );
