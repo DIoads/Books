@@ -1,3 +1,4 @@
+import 'package:book/presentation/widgets/listViews/list_list_view.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,13 @@ class RecommendationsScreenView extends StatefulWidget {
 class _RecommendationsScreenViewState extends State<RecommendationsScreenView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("ListView"),
+      ),
+      body: const SafeArea(
+        child: ListList(),
+      ),
+    );
   }
 }
