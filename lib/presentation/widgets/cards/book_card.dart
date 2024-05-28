@@ -1,10 +1,8 @@
-import 'package:book/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 
 class BookCard extends StatelessWidget {
-  const BookCard({super.key, required this.cardName, required this.actualBook});
+  const BookCard({super.key, required this.cardName});
   final String cardName;
-  final BookEntity actualBook;
 
   @override
   Widget build(BuildContext context) {
