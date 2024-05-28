@@ -34,16 +34,11 @@ class RecommendationsScreenViewState
     extends ConsumerState<RecommendationsScreenView> {
   @override
   Widget build(BuildContext context) {
-    ResultsEntity results =
-        ref.read(overviewResponseNotifierProvider).getResults;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("ListView"),
-      ),
-      body: SafeArea(
-        child: ListList(
-          results: results,
-        ),
+    List<ListElementEntity> resultsList =
+        ref.read(overviewResponseNotifierProvider).getResults.getLists;
+    return SafeArea(
+      child: ListList(
+        resultsList: resultsList,
       ),
     );
   }

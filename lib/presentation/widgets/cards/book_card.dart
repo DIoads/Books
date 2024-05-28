@@ -9,7 +9,7 @@ class BookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: SizedBox(
-        width: 400,
+        width: 200,
         height: 200,
         child: Center(child: Text(currentBook.getTitle)),
       ),

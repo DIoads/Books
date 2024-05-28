@@ -3,33 +3,33 @@ import 'package:book/presentation/widgets/cards/book_card.dart';
 import 'package:flutter/material.dart';
 
 class BookList extends StatelessWidget {
-  final ListElementEntity list;
+  final List<BookEntity> bookList;
   const BookList({
     super.key,
-    required this.list,
+    required this.bookList,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        clipBehavior: Clip.hardEdge,
-        child: Row(
-          children: [
-            BookCard(currentBook: list.books[0]),
-            BookCard(currentBook: list.books[0]),
-            BookCard(currentBook: list.books[0]),
-            BookCard(currentBook: list.books[0]),
-
-            /* ListView.builder(
-              itemCount: list.getBooks.length,
+    final ScrollController controller = ScrollController();
+    return SizedBox(
+      height: 200,
+      width: 400,
+      child: Row(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              controller: controller,
+              itemCount: bookList.length,
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                return BookCard(currentBook: list.books[index]);
+                return BookCard(currentBook: bookList[index]);
               },
-            )*/
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

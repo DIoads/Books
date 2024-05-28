@@ -3,20 +3,33 @@ import 'package:book/presentation/widgets/listViews/book_list_view.dart';
 import 'package:flutter/material.dart';
 
 class ListList extends StatelessWidget {
-  final ResultsEntity results;
+  final List<ListElementEntity> resultsList;
   const ListList({
     super.key,
-    required this.results,
+    required this.resultsList,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      clipBehavior: Clip.hardEdge,
+    final ScrollController controller = ScrollController();
+
+    return SizedBox(
+      height: 800,
+      width: 400,
       child: Column(
         children: [
-          BookList(list: results.lists.first),
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              controller: controller,
+              itemCount: resultsList.length,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return BookList(bookList: resultsList[index].getBooks);
+              },
+            ),
+          ),
+          //BookList(bookList: resultsList.first.getBooks),
         ],
       ),
     );
