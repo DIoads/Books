@@ -22,6 +22,8 @@ class OverviewResponseModel {
   });
 
   factory OverviewResponseModel.fromJson(Map<String, dynamic> json) =>
+
+      ///construye un modelo de overviewresponse desde un json hacia un overviewresponsemodel
       OverviewResponseModel(
         status: json["status"],
         copyright: json["copyright"],

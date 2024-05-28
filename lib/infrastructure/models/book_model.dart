@@ -56,6 +56,7 @@ class BookModel {
   });
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
+        ///construye un modelo de bookmodel desde un json hacia
         ageGroup: json["age_group"],
         amazonProductUrl: json["amazon_product_url"],
         articleChapterLink: json["article_chapter_link"],
