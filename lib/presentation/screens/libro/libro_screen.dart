@@ -1,4 +1,9 @@
+import 'package:book/domain/entities/book_entity.dart';
+import 'package:book/domain/entities/buy_link_entity.dart';
+import 'package:book/presentation/screens/recommended/recommended_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class LibroScreen extends StatelessWidget {
   final String name = "libro";
@@ -9,7 +14,9 @@ class LibroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Libro (En construcción)')),
+        appBar: AppBar(
+          title: const Text('Libro'),
+        ),
         body: const CardExample(),
       ),
     );
@@ -21,31 +28,65 @@ class CardExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
+    final BookEntity book = BookEntity(
+        ageGroup: '',
+        amazonProductUrl: '',
+        articleChapterLink: ' ',
+        author: 'Julia Roberts',
+        bookImage:
+            'https://upload.wikimedia.org/wikipedia/commons/c/c9/Julia_Roberts_Cannes_2016_3.jpg',
+        bookImageWidth: 0,
+        bookImageHeight: 0,
+        bookReviewLink: '0',
+        contributor: 'director',
+        contributorNote: '',
+        createdDate: DateTime.now(),
+        description: 'Mujer peliroja buenasa',
+        firstChapterLink: '',
+        price: '',
+        primaryIsbn10: '',
+        primaryIsbn13: '',
+        bookUri: '',
+        publisher: '',
+        rank: 1,
+        rankLastWeek: 1,
+        sundayReviewLink: '',
+        title: 'Mujer bonita',
+        updatedDate: DateTime.now(),
+        weeksOnList: 0,
+        buyLinks: [BuyLinkEntity.emptyLinks()]);
+
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 20.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      elevation: 10,
+      child: ClipRRect(
+        // Los bordes del contenido del card se cortan usando BorderRadius
+        borderRadius: BorderRadius.circular(30),
+
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const ListTile(
-              leading: Icon(Icons.album),
-              title: Text('The Enchanted Nightingale'),
-              subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('Detalles'),
-                  onPressed: () {/* ... */},
+            IconButton.outlined(
+                onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+            SizedBox(
+              width: 250,
+              //height: 500,
+              child: Card(
+                child: Wrap(
+                  children: [
+                    Image.network(book.getBookImage),
+                  ],
                 ),
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('_'),
-                  onPressed: () {/* ... */},
-                ),
-                const SizedBox(width: 8),
-              ],
+              ),
             ),
+            ListTile(
+              title: Text(book.getTitle),
+              subtitle: Text(book.getContributor),
+            ),
+            Text(book.getTitle),
+            Text(book.getContributor),
+            Text(book.getAuthor),
+            Text(book.getDescription)
           ],
         ),
       ),
