@@ -27,4 +27,9 @@ final List<RouteBase> routes = [
     name: const Recomendation().name,
     builder: (context, state) => const Recomendation(),
   ),
+  GoRoute(
+    path: '/libro',
+    name: const LibroScreen().name,
+    builder: (context, state) => const LibroScreen(),
+  ),
 ];
