@@ -67,15 +67,6 @@ class ButtonsRow extends ConsumerWidget {
             if (context.mounted) context.go('/recommendations');
           },
         ),
-        const SizedBox(
-          width: 20,
-        ),
-        TextButton(
-          child: const Text('Busqueda'),
-          onPressed: () {
-            // context.go('/search');
-          },
-        ),
       ],
     );
   }

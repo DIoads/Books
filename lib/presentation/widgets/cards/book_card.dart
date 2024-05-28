@@ -7,10 +7,14 @@ class BookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double height = screenSize.height;
+    double width = screenSize.width;
+
     return Card(
       child: SizedBox(
-        width: 200,
-        height: 200,
+        height: height / 5,
+        width: width / 2,
         child: Center(child: Text(currentBook.getTitle)),
       ),
     );

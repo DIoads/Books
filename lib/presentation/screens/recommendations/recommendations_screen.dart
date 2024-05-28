@@ -1,6 +1,5 @@
 import 'package:book/domain/entities/entities.dart';
 import 'package:book/presentation/providers/overview_response_provider.dart';
-import 'package:book/presentation/widgets/listViews/list_list_view.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,8 +36,18 @@ class RecommendationsScreenViewState
     List<ListElementEntity> resultsList =
         ref.read(overviewResponseNotifierProvider).getResults.getLists;
     return SafeArea(
-      child: ListList(
-        resultsList: resultsList,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          ListList(
+            resultsList: resultsList,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const ButtonsRow()
+        ],
       ),
     );
   }

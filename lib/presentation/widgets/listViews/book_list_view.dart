@@ -12,9 +12,13 @@ class BookList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScrollController controller = ScrollController();
+    Size screenSize = MediaQuery.of(context).size;
+    double height = screenSize.height;
+    double width = screenSize.width;
+
     return SizedBox(
-      height: 200,
-      width: 400,
+      height: height / 5,
+      width: width,
       child: Row(
         children: [
           Expanded(

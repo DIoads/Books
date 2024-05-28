@@ -12,10 +12,12 @@ class ListList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScrollController controller = ScrollController();
-
+    Size screenSize = MediaQuery.of(context).size;
+    double width = screenSize.width;
+    double height = screenSize.height;
     return SizedBox(
-      height: 800,
-      width: 400,
+      height: height * .8,
+      width: width,
       child: Column(
         children: [
           Expanded(
@@ -25,11 +27,15 @@ class ListList extends StatelessWidget {
               itemCount: resultsList.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                return BookList(bookList: resultsList[index].getBooks);
+                return Column(
+                  children: [
+                    Text(resultsList[index].displayName),
+                    BookList(bookList: resultsList[index].getBooks),
+                  ],
+                );
               },
             ),
           ),
-          //BookList(bookList: resultsList.first.getBooks),
         ],
       ),
     );
