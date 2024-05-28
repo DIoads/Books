@@ -1,6 +1,9 @@
+import 'package:book/domain/entities/entities.dart';
+import 'package:book/presentation/providers/overview_response_provider.dart';
 import 'package:book/presentation/widgets/listViews/list_list_view.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecommendationsScreen extends StatelessWidget with CustomAppBar {
   final String name = "Recommendations";
@@ -18,25 +21,29 @@ class RecommendationsScreen extends StatelessWidget with CustomAppBar {
   }
 }
 
-class RecommendationsScreenView extends StatefulWidget {
+class RecommendationsScreenView extends ConsumerStatefulWidget {
   const RecommendationsScreenView({
     super.key,
   });
-
   @override
-  State<RecommendationsScreenView> createState() =>
-      _RecommendationsScreenViewState();
+  RecommendationsScreenViewState createState() =>
+      RecommendationsScreenViewState();
 }
 
-class _RecommendationsScreenViewState extends State<RecommendationsScreenView> {
+class RecommendationsScreenViewState
+    extends ConsumerState<RecommendationsScreenView> {
   @override
   Widget build(BuildContext context) {
+    ResultsEntity results =
+        ref.read(overviewResponseNotifierProvider).getResults;
     return Scaffold(
       appBar: AppBar(
         title: const Text("ListView"),
       ),
-      body: const SafeArea(
-        child: ListList(),
+      body: SafeArea(
+        child: ListList(
+          results: results,
+        ),
       ),
     );
   }
