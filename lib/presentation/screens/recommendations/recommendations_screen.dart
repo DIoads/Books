@@ -30,18 +30,6 @@ class RecommendationsScreenView extends StatefulWidget {
 class _RecommendationsScreenViewState extends State<RecommendationsScreenView> {
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(children: [
-          BookListView(),
-          Text('data'),
-          SizedBox(
-            height: 20,
-          ),
-          Text('data'),
-        ]),
-      ),
-    );
+    return const Placeholder();
   }
 }
