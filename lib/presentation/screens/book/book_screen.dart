@@ -32,7 +32,6 @@ class CardExampleState extends ConsumerState<CardExample> {
   Widget build(BuildContext context) {
     final BookEntity book = ref.read(bookNotifierProvider);
     Size screenSize = MediaQuery.of(context).size;
-    double height = screenSize.height;
     double width = screenSize.width;
 
     return Card(
