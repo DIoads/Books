@@ -2,6 +2,7 @@ import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget with CustomAppBar {
   final String name = "Home";
@@ -28,16 +29,6 @@ class _HomeView extends ConsumerStatefulWidget {
 class HomeViewState extends ConsumerState<_HomeView>
     with CustomGestureDetector {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final String? userName = ref.watch(userNotifierProvider).getUsername;
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
@@ -45,7 +36,14 @@ class HomeViewState extends ConsumerState<_HomeView>
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Scaffold(
-        drawer: const Drawer(),
+        drawer: Drawer(
+          child: ListTile(
+            leading: const Icon(Icons.palette),
+            onTap: () {
+              context.push('/themechanger');
+            },
+          ),
+        ),
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,

@@ -4,3 +4,4 @@ export 'package:book/presentation/screens/recommendations/recommendations_screen
 export 'package:book/presentation/screens/signup/signup_screen.dart';
 export 'package:book/presentation/screens/splash/splash_screen.dart';
 export 'package:book/presentation/screens/book/book_screen.dart';
+export 'package:book/presentation/screens/themeChanger/theme_changer_screen.dart';

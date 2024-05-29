@@ -15,6 +15,7 @@ class BookCard extends ConsumerStatefulWidget {
 class BookCardState extends ConsumerState<BookCard> {
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     final BookNotifier bookNotifier = ref.watch(bookNotifierProvider.notifier);
 
     Size screenSize = MediaQuery.of(context).size;
@@ -25,7 +26,7 @@ class BookCardState extends ConsumerState<BookCard> {
       child: Card(
         elevation: 30,
         shadowColor: Colors.black,
-        color: Colors.greenAccent[100],
+        color: colors.background,
         child: SizedBox(
           height: height / 5,
           width: width / 2,
@@ -36,8 +37,8 @@ class BookCardState extends ConsumerState<BookCard> {
               Text(
                 widget.currentBook.getTitle,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 1, 95, 177),
+                style: TextStyle(
+                  color: colors.onBackground,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -55,9 +56,12 @@ class BookCardState extends ConsumerState<BookCard> {
                   },
                   //child: const Text('Enabled'),
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          const Color.fromARGB(255, 164, 187, 214))),
-                  child: const Text('Detalles'),
+                      backgroundColor:
+                          MaterialStateProperty.all(colors.inversePrimary)),
+                  child: Text(
+                    'Detalles',
+                    style: TextStyle(color: colors.inverseSurface),
+                  ),
                 ),
               )
             ],

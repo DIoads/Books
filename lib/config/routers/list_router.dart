@@ -32,4 +32,9 @@ final List<RouteBase> routes = [
     name: const BookScreen().name,
     builder: (context, state) => const BookScreen(),
   ),
+  GoRoute(
+    path: '/themechanger',
+    name: const ThemeChangerScreen().name,
+    builder: (context, state) => const ThemeChangerScreen(),
+  ),
 ];
