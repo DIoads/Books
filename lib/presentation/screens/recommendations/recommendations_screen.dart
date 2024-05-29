@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecommendationsScreen extends StatelessWidget with CustomAppBar {
-  final String name = "Recommendations";
+  final String name = "Recomendaciones";
 
   const RecommendationsScreen({super.key});
 

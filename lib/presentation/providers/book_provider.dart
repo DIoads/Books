@@ -1,7 +1,7 @@
 import 'package:book/domain/entities/book_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final bookProvider =
+final bookNotifierProvider =
     StateNotifierProvider<BookNotifier, BookEntity>((ref) => BookNotifier());
 
 class BookNotifier extends StateNotifier<BookEntity> {

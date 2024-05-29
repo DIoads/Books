@@ -19,11 +19,6 @@ class LogInFormState extends ConsumerState<LogInForm> with Validators {
   String password = "";
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
 

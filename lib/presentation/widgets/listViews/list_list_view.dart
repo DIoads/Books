@@ -16,7 +16,7 @@ class ListList extends StatelessWidget {
     double width = screenSize.width;
     double height = screenSize.height;
     return SizedBox(
-      height: height * .8,
+      height: height * 0.8,
       width: width,
       child: Column(
         children: [
