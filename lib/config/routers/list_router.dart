@@ -37,4 +37,9 @@ final List<RouteBase> routes = [
     name: const UserInfoScreen().name,
     builder: (context, state) => const UserInfoScreen(),
   ),
+  GoRoute(
+    path: '/modifyUserInfo',
+    name: const ModifyUserInfoScreen().name,
+    builder: (context, state) => const ModifyUserInfoScreen(),
+  ),
 ];
