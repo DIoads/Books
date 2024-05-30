@@ -9,9 +9,9 @@ class UserEntity {
     required this.username,
   });
 
-  String? get getAge => age;
+  String get getAge => age;
   String? get gerImageUrl => imageURL;
-  String? get getUsername => username;
+  String get getUsername => username;
 
   set setAge(String age) {
     this.age = age;
