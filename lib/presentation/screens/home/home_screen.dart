@@ -1,7 +1,6 @@
 import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,7 +24,7 @@ class _HomeView extends ConsumerWidget with CustomGestureDetector {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String? email = ref.watch(userNotifierProvider).getEmail;
+    final String? email = ref.watch(userNotifierProvider).getUsername;
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
 
     return Padding(
