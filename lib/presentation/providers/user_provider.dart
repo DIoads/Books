@@ -40,7 +40,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
 
     if (user != null) {
       state = UserEntity(age: age, username: username);
-      await _userRepo.createUser(user: state, uid: user.uid);
+      await _userRepo.createUpdateUser(user: state, uid: user.uid);
 
       if (context.mounted) context.go('/home');
     }
@@ -60,8 +60,8 @@ class UserNotifier extends StateNotifier<UserEntity> {
 
     User? user = _auth.getCurrentUser();
 
-    await _userRepo.updateUserInfo(user: newData, uid: user!.uid);
+    await _userRepo.createUpdateUser(user: newData, uid: user!.uid);
     state = newData;
-    context.go('/userInfo');
+    if (context.mounted) context.go('/userInfo');
   }
 }

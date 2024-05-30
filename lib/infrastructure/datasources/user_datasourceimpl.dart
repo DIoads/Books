@@ -8,7 +8,7 @@ class UserDatasourceimpl extends UserDatasource {
   final _db = FirebaseFirestore.instance;
 
   @override
-  createUser({required UserEntity user, required String uid}) async {
+  createUpdateUser({required UserEntity user, required String uid}) async {
     await _db
         .collection("users")
         .doc(uid)
