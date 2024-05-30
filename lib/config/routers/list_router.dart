@@ -32,4 +32,9 @@ final List<RouteBase> routes = [
     name: const LibroScreen().name,
     builder: (context, state) => const LibroScreen(),
   ),
+  GoRoute(
+    path: '/userInfo',
+    name: const UserInfoScreen().name,
+    builder: (context, state) => const UserInfoScreen(),
+  ),
 ];

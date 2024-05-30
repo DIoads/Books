@@ -3,6 +3,4 @@ import 'package:go_router/go_router.dart';
 
 // GoRouter configuration
 final appRouter = GoRouter(
-    debugLogDiagnostics: true,
-    initialLocation: '/recomendacion',
-    routes: routes);
+    debugLogDiagnostics: true, initialLocation: '/userInfo', routes: routes);

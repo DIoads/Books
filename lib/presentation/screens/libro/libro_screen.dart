@@ -1,9 +1,6 @@
 import 'package:book/domain/entities/book_entity.dart';
 import 'package:book/domain/entities/buy_link_entity.dart';
-import 'package:book/presentation/screens/recommended/recommended_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LibroScreen extends StatelessWidget {
   final String name = "libro";
@@ -17,14 +14,14 @@ class LibroScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Libro'),
         ),
-        body: const CardExample(),
+        body: const LibroScreenView(),
       ),
     );
   }
 }
 
-class CardExample extends StatelessWidget {
-  const CardExample({super.key});
+class LibroScreenView extends StatelessWidget {
+  const LibroScreenView({super.key});
 
   @override
   Widget build(BuildContext context) {
