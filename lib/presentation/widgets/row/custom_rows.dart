@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomRows extends StatelessWidget {
+  ///funcionalidad de botones de text de login y singup
   final String mainText;
   final String pressText;
   final VoidCallback onpress;
@@ -41,6 +42,7 @@ class CustomRows extends StatelessWidget {
 }
 
 class ButtonsRow extends ConsumerWidget {
+  ///botones de inicio y recomendacion
   const ButtonsRow({super.key});
 
   @override

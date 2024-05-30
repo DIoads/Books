@@ -12,10 +12,17 @@ class HomeScreen extends StatelessWidget with CustomAppBar {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
-    return Scaffold(
-        appBar: appBarWithOutReturnButton(
-            title: name, backgroundcolor: colors.onPrimary),
-        body: const _HomeView());
+    Size screenSize = MediaQuery.of(context).size;
+    double height = screenSize.height;
+    double width = screenSize.width;
+    return SizedBox(
+      height: height,
+      width: width,
+      child: Scaffold(
+          appBar: appBarWithOutReturnButton(
+              title: name, backgroundcolor: colors.onPrimary),
+          body: const _HomeView()),
+    );
   }
 }
 
@@ -33,44 +40,40 @@ class HomeViewState extends ConsumerState<_HomeView>
     final String? userName = ref.watch(userNotifierProvider).getUsername;
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
 
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Scaffold(
-        drawer: Drawer(
-          child: ListTile(
-            leading: const Icon(Icons.palette),
-            onTap: () {
-              context.push('/themechanger');
-            },
-          ),
-        ),
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                style: const TextStyle(fontSize: 20),
-                '$userName',
-                textAlign: TextAlign.right,
-              ),
-            ],
-          ),
-        ),
-        body: Center(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.end,
+    return Scaffold(
+      drawer: Drawer(
+        child: Column(
           children: [
+            ListTile(
+              leading: const Icon(Icons.palette),
+              onTap: () {
+                context.push('/themechanger');
+              },
+            ),
             iconlessnlGestureDetector(() {
               logout(userNotifier: userNotifier, context: context);
             }, 'Log Out'),
-            const SizedBox(
-              height: 40,
-            ),
-            const ButtonsRow()
           ],
-        )),
+        ),
       ),
+      appBar: AppBar(
+        title: Text(
+          style: const TextStyle(fontSize: 20),
+          '$userName',
+          textAlign: TextAlign.right,
+        ),
+      ),
+      body: const Center(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          SizedBox(
+            height: 40,
+          ),
+          ButtonsRow()
+        ],
+      )),
     );
   }
 
