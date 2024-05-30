@@ -50,16 +50,13 @@ class UserInfoViewState extends ConsumerState<UserInfoView> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         elevation: 20,
         child: ClipRRect(
-          // Los bordes del contenido del card se cortan usando BorderRadius
           borderRadius: BorderRadius.circular(30),
-
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   // SizedBox(
                   // width: width * 0.625,
