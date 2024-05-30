@@ -13,3 +13,4 @@ export 'package:book/presentation/widgets/row/custom_rows.dart';
 export 'package:book/presentation/widgets/row/theme_settings_row.dart';
 export 'package:book/presentation/widgets/text/custom_text.dart';
 export 'package:book/presentation/widgets/toast/toast.dart';
+export 'package:book/presentation/widgets/picker/image_picker.dart';

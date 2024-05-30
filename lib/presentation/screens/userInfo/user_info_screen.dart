@@ -35,7 +35,7 @@ class UserInfoView extends ConsumerStatefulWidget {
   UserInfoViewState createState() => UserInfoViewState();
 }
 
-class UserInfoViewState extends ConsumerState<UserInfoView> {
+class UserInfoViewState extends ConsumerState<UserInfoView> with ImgPicker {
   @override
   Widget build(BuildContext context) {
     final UserEntity user = ref.watch(userNotifierProvider);
@@ -63,6 +63,11 @@ class UserInfoViewState extends ConsumerState<UserInfoView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  IconButton(
+                      onPressed: () {
+                        showPicker(context);
+                      },
+                      icon: const Icon(Icons.add_photo_alternate_outlined)),
                   // SizedBox(
                   // width: width * 0.625,
                   // height: height * 0.625,
