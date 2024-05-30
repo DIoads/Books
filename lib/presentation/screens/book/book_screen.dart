@@ -22,19 +22,19 @@ class BookScreen extends StatelessWidget with CustomAppBar {
       child: Scaffold(
           appBar: appBarWithReturnButton(
               title: name, backgroundcolor: colors.onPrimary),
-          body: const CardExample()),
+          body: const BookScreenView()),
     );
   }
 }
 
-class CardExample extends ConsumerStatefulWidget {
-  const CardExample({super.key});
+class BookScreenView extends ConsumerStatefulWidget {
+  const BookScreenView({super.key});
 
   @override
-  CardExampleState createState() => CardExampleState();
+  BookScreenViewState createState() => BookScreenViewState();
 }
 
-class CardExampleState extends ConsumerState<CardExample> {
+class BookScreenViewState extends ConsumerState<BookScreenView> {
   @override
   Widget build(BuildContext context) {
     final BookEntity book = ref.read(bookNotifierProvider);
