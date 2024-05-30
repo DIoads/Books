@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ThemeChangerScreen extends ConsumerWidget {
-  final String name = 'ThemeChangerScreen';
+  final String name = 'Seleccionar tema';
 
   const ThemeChangerScreen({super.key});
 
