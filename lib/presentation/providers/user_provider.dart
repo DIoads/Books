@@ -62,6 +62,6 @@ class UserNotifier extends StateNotifier<UserEntity> {
 
     await _userRepo.createUpdateUser(user: newData, uid: user!.uid);
     state = newData;
-    if (context.mounted) context.go('/userInfo');
+    if (context.mounted) context.pop();
   }
 }

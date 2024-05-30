@@ -1,7 +1,9 @@
 import 'package:book/domain/entities/user_entity.dart';
+import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class UserInfoScreen extends StatelessWidget with CustomAppBar {
   final String name = "Información del usuario";
@@ -21,23 +23,24 @@ class UserInfoScreen extends StatelessWidget with CustomAppBar {
       child: Scaffold(
           appBar: appBarWithReturnButton(
               title: name, backgroundcolor: colors.onPrimary),
-          body: const UserInfoScreenView()),
+          body: const UserInfoView()),
     );
   }
 }
 
-class UserInfoScreenView extends ConsumerStatefulWidget {
-  const UserInfoScreenView({super.key});
+class UserInfoView extends ConsumerStatefulWidget {
+  const UserInfoView({super.key});
 
   @override
-  UserInfoScreenViewState createState() => UserInfoScreenViewState();
+  UserInfoViewState createState() => UserInfoViewState();
 }
 
-class UserInfoScreenViewState extends ConsumerState<UserInfoScreenView> {
+class UserInfoViewState extends ConsumerState<UserInfoView> {
   @override
   Widget build(BuildContext context) {
-    // final BookEntity book = ref.read(bookNotifierProvider);
-    UserEntity user = UserEntity(age: '23', username: 'Pazita');
+    final UserEntity user = ref.read(userNotifierProvider);
+    // UserEntity user =
+    //     UserEntity(age: '23', username: 'Pazita la mas chiquistrikis');
     Size screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
     double height = screenSize.height;
@@ -54,31 +57,44 @@ class UserInfoScreenViewState extends ConsumerState<UserInfoScreenView> {
 
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: width * 0.625,
-                  height: height * 0.625,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  // SizedBox(
+                  // width: width * 0.625,
+                  // height: height * 0.625,
                   //height: 500,
-                  child: Image.network(
-                      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'),
-                ),
-                SizedBox(
-                  width: width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(displayText: user.getUsername),
-                        CustomText(displayText: user.getAge),
-                      ],
+                  const CircleAvatar(
+                    radius: 40,
+                    backgroundImage: NetworkImage(
+                        'https://super.abril.com.br/wp-content/uploads/2019/12/reproducao_pokemon_episodio_pokemon_centenas_criancas_hospital.jpg?quality=90&strip=info&w=675&h=440&crop=1'),
+                  ),
+
+                  SizedBox(
+                    width: width,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomText(displayText: user.getUsername),
+                          CustomText(displayText: user.getAge),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const Padding(padding: EdgeInsets.symmetric(vertical: 200)),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.push('/modifyUserInfo');
+                    },
+                    child: const Text('Modificar'),
+                  )
+                ],
+              ),
             ),
           ),
         ),
