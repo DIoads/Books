@@ -1,5 +1,7 @@
 export 'package:book/presentation/helpers/validators.dart';
+export 'package:book/presentation/widgets/alerts/delete_alert_dialog.dart';
 export 'package:book/presentation/widgets/appBars/custom_app_bar.dart';
+export 'package:book/presentation/widgets/buttons/custom_buttons.dart';
 export 'package:book/presentation/widgets/formFields/custom_text_form_field.dart';
 export 'package:book/presentation/widgets/forms/login_form.dart';
 export 'package:book/presentation/widgets/forms/modify_user_info_form.dart';

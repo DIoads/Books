@@ -1,10 +1,10 @@
 import 'package:book/presentation/providers/user_provider.dart';
-import 'package:book/presentation/widgets/buttons/custom_buttons.dart';
+import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class AccountSettingsRow extends ConsumerWidget {
+class AccountSettingsRow extends ConsumerWidget with AlertDialogs {
   const AccountSettingsRow({
     super.key,
   });
@@ -20,7 +20,11 @@ class AccountSettingsRow extends ConsumerWidget {
             onpress: () {
               context.push('/userInfo');
             }),
-        CustomButton(text: 'Eliminar cuenta', onpress: () {}),
+        CustomButton(
+            text: 'Eliminar cuenta',
+            onpress: () {
+              cancelAlertDialog(context);
+            }),
         CustomButton(
             text: 'Cerrar sesión',
             onpress: () {
