@@ -52,4 +52,9 @@ class FirebaseAuthService implements AuthServicesInterface {
     User? currentUser = _auth.currentUser;
     return currentUser;
   }
+
+  @override
+  Future<void> deleteUser() async {
+    await _auth.currentUser?.delete();
+  }
 }
