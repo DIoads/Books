@@ -12,11 +12,17 @@ class RecommendationsScreen extends StatelessWidget with CustomAppBar {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-
-    return Scaffold(
-        appBar: appBarWithOutReturnButton(
-            title: name, backgroundcolor: colors.onPrimary),
-        body: const RecommendationsScreenView());
+    Size screenSize = MediaQuery.of(context).size;
+    double width = screenSize.width;
+    double height = screenSize.height;
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Scaffold(
+          appBar: appBarWithOutReturnButton(
+              title: name, backgroundcolor: colors.onPrimary),
+          body: const RecommendationsScreenView()),
+    );
   }
 }
 
@@ -42,9 +48,6 @@ class RecommendationsScreenViewState
         children: [
           ListList(
             resultsList: resultsList,
-          ),
-          const SizedBox(
-            height: 20,
           ),
           const ButtonsRow()
         ],

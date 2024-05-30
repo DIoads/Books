@@ -49,27 +49,33 @@ class ButtonsRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final responseNotifier =
         ref.watch(overviewResponseNotifierProvider.notifier);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextButton(
-          child: const Text('inicio'),
-          onPressed: () {
-            context.go('/home');
-          },
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-        TextButton(
-          child: const Text('Recomendaciones'),
-          onPressed: () async {
-            await responseLoad(responseNotifier);
-            if (context.mounted) context.go('/recommendations');
-          },
-        ),
-      ],
+    Size screenSize = MediaQuery.of(context).size;
+    double height = screenSize.height;
+    double width = screenSize.width;
+    return SizedBox(
+      height: height * 0.1,
+      width: width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+            child: const Text('inicio'),
+            onPressed: () {
+              context.go('/home');
+            },
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          TextButton(
+            child: const Text('Recomendaciones'),
+            onPressed: () async {
+              await responseLoad(responseNotifier);
+              if (context.mounted) context.go('/recommendations');
+            },
+          ),
+        ],
+      ),
     );
   }
 

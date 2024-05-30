@@ -1,8 +1,9 @@
 import 'package:book/presentation/providers/user_provider.dart';
+import 'package:book/presentation/widgets/row/account_settings_row.dart';
+import 'package:book/presentation/widgets/row/theme_settings_row.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget with CustomAppBar {
   final String name = "Home";
@@ -38,22 +39,11 @@ class HomeViewState extends ConsumerState<_HomeView>
   @override
   Widget build(BuildContext context) {
     final String? userName = ref.watch(userNotifierProvider).getUsername;
-    final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
 
     return Scaffold(
-      drawer: Drawer(
+      drawer: const Drawer(
         child: Column(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.palette),
-              onTap: () {
-                context.push('/themechanger');
-              },
-            ),
-            iconlessnlGestureDetector(() {
-              logout(userNotifier: userNotifier, context: context);
-            }, 'Log Out'),
-          ],
+          children: [AccountSettingsRow(), ThemeSettingsRow()],
         ),
       ),
       appBar: AppBar(
@@ -75,9 +65,5 @@ class HomeViewState extends ConsumerState<_HomeView>
         ],
       )),
     );
-  }
-
-  logout({required BuildContext context, required UserNotifier userNotifier}) {
-    userNotifier.logOut(context);
   }
 }

@@ -23,49 +23,47 @@ class BookCardState extends ConsumerState<BookCard> {
     double width = screenSize.width;
 
     return Card(
-      child: Card(
-        elevation: 30,
-        shadowColor: Colors.black,
-        color: colors.background,
-        child: SizedBox(
-          height: height / 5,
-          width: width / 2,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //  mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                widget.currentBook.getTitle,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: colors.onBackground,
-                  fontWeight: FontWeight.w500,
+      elevation: 30,
+      shadowColor: Colors.black,
+      color: colors.background,
+      child: SizedBox(
+        height: height / 5,
+        width: width / 2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //  mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.currentBook.getTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: colors.onBackground,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Image(
+                image: NetworkImage(widget.currentBook.getBookImage),
+                width: width / 3,
+                height: height / 11),
+            SizedBox(
+              height: 30,
+              width: 80,
+              child: TextButton(
+                onPressed: () async {
+                  bookNotifier.bookChanged(widget.currentBook);
+                  context.push('/book');
+                },
+                //child: const Text('Enabled'),
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(colors.inversePrimary)),
+                child: Text(
+                  'Detalles',
+                  style: TextStyle(color: colors.inverseSurface),
                 ),
               ),
-              Image(
-                  image: NetworkImage(widget.currentBook.getBookImage),
-                  width: width / 3,
-                  height: height / 14),
-              SizedBox(
-                height: height / 20,
-                width: width / 4.5,
-                child: TextButton(
-                  onPressed: () async {
-                    bookNotifier.bookChanged(widget.currentBook);
-                    context.push('/book');
-                  },
-                  //child: const Text('Enabled'),
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(colors.inversePrimary)),
-                  child: Text(
-                    'Detalles',
-                    style: TextStyle(color: colors.inverseSurface),
-                  ),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
