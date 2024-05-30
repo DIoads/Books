@@ -23,7 +23,9 @@ class AccountSettingsRow extends ConsumerWidget with AlertDialogs {
         CustomButton(
             text: 'Eliminar cuenta',
             onpress: () {
-              cancelAlertDialog(context);
+              cancelAlertDialog(
+                  context: context,
+                  cancelAction: () => deleteAccount(userNotifier));
             }),
         CustomButton(
             text: 'Cerrar sesión',
@@ -32,5 +34,9 @@ class AccountSettingsRow extends ConsumerWidget with AlertDialogs {
             }),
       ],
     );
+  }
+
+  Future<void> deleteAccount(UserNotifier userNotifier) async {
+    await userNotifier.delete();
   }
 }

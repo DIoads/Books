@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 mixin AlertDialogs {
-  cancelAlertDialog(BuildContext context) {
+  cancelAlertDialog(
+      {required BuildContext context, required VoidCallback cancelAction}) {
     // set up the buttons
     TextButton cancelButton = TextButton(
       child: const Text("Cancelar"),
@@ -12,7 +13,10 @@ mixin AlertDialogs {
     );
     TextButton continueButton = TextButton(
       child: const Text("Continuar"),
-      onPressed: () {},
+      onPressed: () {
+        cancelAction.call();
+        context.go('/login');
+      },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(

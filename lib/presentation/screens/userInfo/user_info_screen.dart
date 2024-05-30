@@ -38,7 +38,7 @@ class UserInfoView extends ConsumerStatefulWidget {
 class UserInfoViewState extends ConsumerState<UserInfoView> {
   @override
   Widget build(BuildContext context) {
-    final UserEntity user = ref.read(userNotifierProvider);
+    final UserEntity user = ref.watch(userNotifierProvider);
     // UserEntity user =
     //     UserEntity(age: '23', username: 'Pazita la mas chiquistrikis');
     Size screenSize = MediaQuery.of(context).size;

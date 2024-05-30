@@ -4,6 +4,7 @@ import 'package:book/infrastructure/auth/firebase_auth_services.dart';
 import 'package:book/infrastructure/repositories/user_repository_impl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -63,5 +64,13 @@ class UserNotifier extends StateNotifier<UserEntity> {
     await _userRepo.createUpdateUser(user: newData, uid: user!.uid);
     state = newData;
     if (context.mounted) context.pop();
+  }
+
+  Future<void> delete() async {
+    User? user = _auth.getCurrentUser();
+
+    await _userRepo.deleteUser(uid: user!.uid);
+    await _auth.deleteUser();
+    state = UserEntity(age: '', username: '');
   }
 }
