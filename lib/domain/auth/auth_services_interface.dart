@@ -4,4 +4,5 @@ abstract class AuthServicesInterface {
   Future<User?> signUpWithEmailAndPassword(String email, String password);
   Future<User?> logInWithEmailAndPassword(String email, String password);
   Future<void> signOut();
+  User? getCurrentUser();
 }

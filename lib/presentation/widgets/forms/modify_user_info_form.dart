@@ -16,13 +16,7 @@ class ModifyUserInfoFormState extends ConsumerState<ModifyUserInfoForm>
   final GlobalKey<FormState> _fromKey = GlobalKey<FormState>();
 
   String age = "";
-  String email = "";
   String username = "";
-  String password = "";
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,56 +49,24 @@ class ModifyUserInfoFormState extends ConsumerState<ModifyUserInfoForm>
             const SizedBox(
               height: 20,
             ),
-            CustomTextFormField(
-              label: 'Correo Electrónico',
-              onChanged: (_) {
-                email = _;
-              },
-              validator: emailValidator,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            CustomTextFormField(
-              label: 'Contraseña',
-              obscureText: true,
-              onChanged: (_) {
-                password = _;
-              },
-              validator: passwordValidator,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
             FilledButton.tonalIcon(
                 onPressed: () {
                   final isValid = _fromKey.currentState!.validate();
                   if (!isValid) return;
-                  signUp(
-                      age: age,
-                      email: email,
-                      username: username,
-                      password: password,
-                      userNotifier: userNotifier);
+                  update(
+                      age: age, username: username, userNotifier: userNotifier);
                 },
-                icon: const Icon(Icons.app_registration),
-                label: const Text('Crear Cuenta')),
+                icon: const Icon(Icons.update),
+                label: const Text('Actualizar Datos')),
           ],
         ));
   }
 
-  signUp(
+  update(
       {required String age,
-      required String email,
       required String username,
-      required String password,
       required UserNotifier userNotifier}) async {
     _fromKey.currentState?.validate();
-    await userNotifier.signUp(
-        age: age,
-        context: context,
-        email: email,
-        password: password,
-        username: username);
+    await userNotifier.update(context: context, username: username, age: age);
   }
 }

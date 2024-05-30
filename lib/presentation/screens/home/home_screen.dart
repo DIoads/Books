@@ -1,6 +1,5 @@
 import 'package:book/presentation/providers/user_provider.dart';
-import 'package:book/presentation/widgets/row/account_settings_row.dart';
-import 'package:book/presentation/widgets/row/theme_settings_row.dart';
+import 'package:book/presentation/widgets/drawers/home_drawer.dart';
 import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,18 +37,14 @@ class HomeViewState extends ConsumerState<_HomeView>
     with CustomGestureDetector {
   @override
   Widget build(BuildContext context) {
-    final String? userName = ref.watch(userNotifierProvider).getUsername;
+    final String userName = ref.watch(userNotifierProvider).getUsername;
 
     return Scaffold(
-      drawer: const Drawer(
-        child: Column(
-          children: [AccountSettingsRow(), ThemeSettingsRow()],
-        ),
-      ),
+      drawer: const CustomDrawer(),
       appBar: AppBar(
         title: Text(
           style: const TextStyle(fontSize: 20),
-          '$userName',
+          userName,
           textAlign: TextAlign.right,
         ),
       ),

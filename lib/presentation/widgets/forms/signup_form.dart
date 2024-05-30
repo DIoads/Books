@@ -18,10 +18,6 @@ class RegisterFormState extends ConsumerState<SignUpForm> with Validators {
   String email = "";
   String username = "";
   String password = "";
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

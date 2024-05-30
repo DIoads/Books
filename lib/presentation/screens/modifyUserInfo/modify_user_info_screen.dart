@@ -2,7 +2,7 @@ import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class ModifyUserInfoScreen extends StatelessWidget with CustomAppBar {
-  final String name = "Signup";
+  final String name = "Modificar información";
   const ModifyUserInfoScreen({super.key});
 
   @override
@@ -24,14 +24,7 @@ class _ModifyUserInfoScreenView extends StatelessWidget {
     return const SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            ModifyUserInfoForm(),
-            SizedBox(
-              height: 20,
-            )
-          ],
-        ),
+        child: ModifyUserInfoForm(),
       ),
     );
   }

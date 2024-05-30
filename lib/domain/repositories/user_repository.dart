@@ -4,4 +4,5 @@ abstract class UserRepository {
   Future<UserEntity> getUserInfo(String uid);
 
   createUser({required UserEntity user, required String uid});
+  updateUserInfo({required UserEntity user, required String uid});
 }

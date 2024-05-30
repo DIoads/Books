@@ -51,4 +51,17 @@ class UserNotifier extends StateNotifier<UserEntity> {
     state = UserEntity(age: '', username: '');
     context.go('/login');
   }
+
+  Future<void> update(
+      {required BuildContext context,
+      required String username,
+      required String age}) async {
+    UserEntity newData = UserEntity(age: age, username: username);
+
+    User? user = _auth.getCurrentUser();
+
+    await _userRepo.updateUserInfo(user: newData, uid: user!.uid);
+    state = newData;
+    context.go('/userInfo');
+  }
 }

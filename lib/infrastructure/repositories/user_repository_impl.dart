@@ -14,4 +14,8 @@ class UserRepositoryImpl implements UserRepository {
   Future<UserEntity> getUserInfo(String uid) async {
     return await userDataSource.getUserInfo(uid);
   }
+
+  @override
+  Future<void> updateUserInfo(
+      {required UserEntity user, required String uid}) async {}
 }
