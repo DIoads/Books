@@ -1,6 +1,6 @@
 import 'package:book/domain/entities/book_entity.dart';
 import 'package:book/presentation/providers/book_provider.dart';
-import 'package:book/presentation/widgets/appBars/custom_app_bar.dart';
+import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -90,19 +90,5 @@ class BookScreenViewState extends ConsumerState<BookScreenView> {
         ),
       ),
     );
-  }
-}
-
-class CustomText extends StatelessWidget {
-  const CustomText({
-    super.key,
-    required this.displayText,
-  });
-
-  final String displayText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(displayText);
   }
 }
