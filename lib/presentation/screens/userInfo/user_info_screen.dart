@@ -37,7 +37,7 @@ class CardExampleState extends ConsumerState<CardExample> {
   @override
   Widget build(BuildContext context) {
     // final BookEntity book = ref.read(bookNotifierProvider);
-    UserEntity user = UserEntity(age: '23', username: 'Jose');
+    UserEntity user = UserEntity(age: '23', username: 'Pazita');
     Size screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
     double height = screenSize.height;
