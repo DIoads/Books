@@ -14,4 +14,10 @@ class UserRepositoryImpl implements UserRepository {
   Future<UserEntity> getUserInfo(String uid) async {
     return await userDataSource.getUserInfo(uid);
   }
+
+  @override
+  Future<void> deleteUser({required String uid}) async {
+    //usar runTransactions() si no .delete deja archivos en firebase
+    await userDataSource.deleteUser(uid: uid);
+  }
 }

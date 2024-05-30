@@ -4,4 +4,5 @@ abstract class UserDatasource {
   Future<UserEntity> getUserInfo(String uid);
 
   createUpdateUser({required UserEntity user, required String uid});
+  Future<void> deleteUser({required String uid});
 }

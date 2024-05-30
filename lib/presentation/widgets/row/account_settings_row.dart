@@ -2,6 +2,7 @@ import 'package:book/presentation/providers/user_provider.dart';
 import 'package:book/presentation/widgets/buttons/custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountSettingsRow extends ConsumerWidget {
   const AccountSettingsRow({
@@ -13,8 +14,12 @@ class AccountSettingsRow extends ConsumerWidget {
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
     return Column(
       children: [
-        Text('Ajustes de cuenta'),
-        CustomButton(text: 'Actualizar datos', onpress: () {}),
+        const Text('Ajustes de cuenta'),
+        CustomButton(
+            text: 'Datos de cuenta',
+            onpress: () {
+              context.push('/userInfo');
+            }),
         CustomButton(text: 'Eliminar cuenta', onpress: () {}),
         CustomButton(
             text: 'Cerrar sesión',

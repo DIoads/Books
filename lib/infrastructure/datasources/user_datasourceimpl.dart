@@ -26,4 +26,10 @@ class UserDatasourceimpl extends UserDatasource {
     final user = docSnap.data();
     return UserMapper.castToEntity(user!);
   }
+
+  @override
+  Future<void> deleteUser({required String uid}) async {
+    //usar runTransactions() si no .delete deja archivos en firebase
+    await _db.collection("users").doc(uid).delete();
+  }
 }
