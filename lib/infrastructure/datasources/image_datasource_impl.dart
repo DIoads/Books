@@ -5,8 +5,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class ImageDataSourceImpl implements ImageDataSource {
   @override
-  Future<void> uploadImage({required File image, required String uid}) async {
+  Future<String> uploadImage({required File image, required String uid}) async {
     final ref = FirebaseStorage.instance.ref('images/').child(uid);
     await ref.putFile(image);
+    return await ref.getDownloadURL();
   }
 }

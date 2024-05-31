@@ -60,9 +60,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
       required String age}) async {
     UserEntity newData = UserEntity(age: age, username: username);
 
-    User? user = _auth.getCurrentUser();
-
-    await _userRepo.createUpdateUser(user: newData, uid: user!.uid);
+    await _userRepo.createUpdateUser(user: newData, uid: await _getUserId());
     state = newData;
     if (context.mounted) context.pop();
   }
@@ -73,5 +71,14 @@ class UserNotifier extends StateNotifier<UserEntity> {
     await _userRepo.deleteUser(uid: user!.uid);
     await _auth.deleteUser();
     state = UserEntity(age: '', username: '');
+  }
+
+  Future<void> updateImage() {
+    throw UnimplementedError();
+  }
+
+  Future<String> _getUserId() async {
+    User? user = _auth.getCurrentUser();
+    return user!.uid;
   }
 }

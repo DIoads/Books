@@ -1,5 +1,5 @@
 import 'dart:io';
 
 abstract class ImageRepository {
-  Future<void> uploadImage({required File image, required String uid});
+  Future<String> uploadImage({required File image, required String uid});
 }

@@ -7,7 +7,7 @@ import 'package:book/infrastructure/datasources/image_datasource_impl.dart';
 class ImageRepositoryImpl implements ImageRepository {
   final ImageDataSource _imageDataSource = ImageDataSourceImpl();
   @override
-  Future<void> uploadImage({required File image, required String uid}) async {
-    await _imageDataSource.uploadImage(image: image, uid: uid);
+  Future<String> uploadImage({required File image, required String uid}) async {
+    return await _imageDataSource.uploadImage(image: image, uid: uid);
   }
 }
