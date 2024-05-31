@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserDatasourceimpl extends UserDatasource {
   final _db = FirebaseFirestore.instance;
-
+//crear y actualizar info de usuario
   @override
   createUpdateUser({required UserEntity user, required String uid}) async {
     await _db
@@ -15,6 +15,7 @@ class UserDatasourceimpl extends UserDatasource {
         .set(UserMapper.castToModel(user).toJson());
   }
 
+//obtener info del usuario
   @override
   Future<UserEntity> getUserInfo(String uid) async {
     final ref = _db.collection("users").doc(uid).withConverter(
@@ -27,9 +28,9 @@ class UserDatasourceimpl extends UserDatasource {
     return UserMapper.castToEntity(user!);
   }
 
+//delete
   @override
   Future<void> deleteUser({required String uid}) async {
-    //usar runTransactions() si no .delete deja archivos en firebase
     await _db.collection("users").doc(uid).delete();
   }
 }

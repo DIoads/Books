@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 final userNotifierProvider = StateNotifierProvider<UserNotifier, UserEntity>(
   (ref) => UserNotifier(),
@@ -15,7 +16,7 @@ final userNotifierProvider = StateNotifierProvider<UserNotifier, UserEntity>(
 class UserNotifier extends StateNotifier<UserEntity> {
   final AuthServicesInterface _auth = FirebaseAuthService();
   final _userRepo = UserRepositoryImpl();
-
+  FirebaseStorage storage = FirebaseStorage.instance;
   UserNotifier() : super(UserEntity(age: '', username: ''));
 
   Future<void> logIn(
