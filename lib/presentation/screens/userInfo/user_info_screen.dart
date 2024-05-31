@@ -4,6 +4,7 @@ import 'package:book/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/services.dart';
 
 class UserInfoScreen extends StatelessWidget with CustomAppBar {
   final String name = "Información del usuario";
@@ -41,8 +42,7 @@ class UserInfoViewState extends ConsumerState<UserInfoView> with ImgPicker {
     final UserEntity user = ref.watch(userNotifierProvider);
     final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
     final String uid = userNotifier.getUserId();
-    // UserEntity user =
-    //     UserEntity(age: '23', username: 'Pazita la mas chiquistrikis');
+
     Size screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
     double height = screenSize.height;
@@ -54,16 +54,13 @@ class UserInfoViewState extends ConsumerState<UserInfoView> with ImgPicker {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         elevation: 20,
         child: ClipRRect(
-          // Los bordes del contenido del card se cortan usando BorderRadius
           borderRadius: BorderRadius.circular(30),
-
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
                       onPressed: () async {
@@ -73,15 +70,10 @@ class UserInfoViewState extends ConsumerState<UserInfoView> with ImgPicker {
                             userNotifier: userNotifier);
                       },
                       icon: const Icon(Icons.add_photo_alternate_outlined)),
-                  // SizedBox(
-                  // width: width * 0.625,
-                  // height: height * 0.625,
-                  //height: 500,
                   CircleAvatar(
-                    radius: 40,
+                    radius: 100,
                     backgroundImage: NetworkImage(user.getImageUrl),
                   ),
-
                   SizedBox(
                     width: width,
                     child: Padding(
