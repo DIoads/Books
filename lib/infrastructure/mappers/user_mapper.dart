@@ -5,6 +5,6 @@ class UserMapper {
   static UserEntity castToEntity(UserModel user) => UserEntity(
       age: user.age, username: user.username, imageURL: user.imageURL);
 
-  static UserModel castToModel(UserEntity user) =>
-      UserModel(age: user.age, username: user.username);
+  static UserModel castToModel(UserEntity user) => UserModel(
+      age: user.age, username: user.username, imageURL: user.imageURL);
 }

@@ -1,16 +1,16 @@
 class UserEntity {
   String age;
-  String? imageURL;
+  String imageURL;
   String username;
 
   UserEntity({
     required this.age,
-    this.imageURL,
+    required this.imageURL,
     required this.username,
   });
 
   String get getAge => age;
-  String? get gerImageUrl => imageURL;
+  String get getImageUrl => imageURL;
   String get getUsername => username;
 
   set setAge(String age) {

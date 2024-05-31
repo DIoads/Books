@@ -39,6 +39,8 @@ class UserInfoViewState extends ConsumerState<UserInfoView> with ImgPicker {
   @override
   Widget build(BuildContext context) {
     final UserEntity user = ref.watch(userNotifierProvider);
+    final UserNotifier userNotifier = ref.watch(userNotifierProvider.notifier);
+    final String uid = userNotifier.getUserId();
     // UserEntity user =
     //     UserEntity(age: '23', username: 'Pazita la mas chiquistrikis');
     Size screenSize = MediaQuery.of(context).size;
@@ -64,18 +66,20 @@ class UserInfoViewState extends ConsumerState<UserInfoView> with ImgPicker {
                 // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
-                      onPressed: () {
-                        showPicker(context: context, uid: "ejemplo");
+                      onPressed: () async {
+                        showPicker(
+                            context: context,
+                            uid: uid,
+                            userNotifier: userNotifier);
                       },
                       icon: const Icon(Icons.add_photo_alternate_outlined)),
                   // SizedBox(
                   // width: width * 0.625,
                   // height: height * 0.625,
                   //height: 500,
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 40,
-                    backgroundImage: NetworkImage(
-                        'https://super.abril.com.br/wp-content/uploads/2019/12/reproducao_pokemon_episodio_pokemon_centenas_criancas_hospital.jpg?quality=90&strip=info&w=675&h=440&crop=1'),
+                    backgroundImage: NetworkImage(user.getImageUrl),
                   ),
 
                   SizedBox(

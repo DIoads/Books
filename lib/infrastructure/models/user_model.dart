@@ -13,7 +13,7 @@ class UserModel {
 
   UserModel({
     required this.age,
-    this.imageURL = "",
+    required this.imageURL,
     required this.username,
   });
 

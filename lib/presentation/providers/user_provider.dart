@@ -17,7 +17,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
   final AuthServicesInterface _auth = FirebaseAuthService();
   final _userRepo = UserRepositoryImpl();
   final FirebaseStorage storage = FirebaseStorage.instance;
-  UserNotifier() : super(UserEntity(age: '', username: ''));
+  UserNotifier() : super(UserEntity(age: '', username: '', imageURL: ''));
 
   Future<void> logIn(
       {required BuildContext context,
@@ -41,7 +41,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     if (user != null) {
-      state = UserEntity(age: age, username: username);
+      state = UserEntity(age: age, username: username, imageURL: '');
       await _userRepo.createUpdateUser(user: state, uid: user.uid);
 
       if (context.mounted) context.go('/home');
@@ -50,7 +50,7 @@ class UserNotifier extends StateNotifier<UserEntity> {
 
   Future<void> logOut(BuildContext context) async {
     _auth.signOut();
-    state = UserEntity(age: '', username: '');
+    state = UserEntity(age: '', username: '', imageURL: '');
     context.go('/login');
   }
 
@@ -58,9 +58,9 @@ class UserNotifier extends StateNotifier<UserEntity> {
       {required BuildContext context,
       required String username,
       required String age}) async {
-    UserEntity newData = UserEntity(age: age, username: username);
+    UserEntity newData = UserEntity(age: age, username: username, imageURL: '');
 
-    await _userRepo.createUpdateUser(user: newData, uid: await _getUserId());
+    await _userRepo.createUpdateUser(user: newData, uid: getUserId());
     state = newData;
     if (context.mounted) context.pop();
   }
@@ -70,14 +70,17 @@ class UserNotifier extends StateNotifier<UserEntity> {
 
     await _userRepo.deleteUser(uid: user!.uid);
     await _auth.deleteUser();
-    state = UserEntity(age: '', username: '');
+    state = UserEntity(age: '', username: '', imageURL: '');
   }
 
-  Future<void> updateImage() {
-    throw UnimplementedError();
+  Future<void> updateImage({required String imgUrl}) async {
+    final String uid = getUserId();
+    state.setImageURL = imgUrl;
+
+    await _userRepo.createUpdateUser(user: state, uid: uid);
   }
 
-  Future<String> _getUserId() async {
+  String getUserId() {
     User? user = _auth.getCurrentUser();
     return user!.uid;
   }

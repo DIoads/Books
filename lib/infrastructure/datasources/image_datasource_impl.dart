@@ -8,6 +8,7 @@ class ImageDataSourceImpl implements ImageDataSource {
   Future<String> uploadImage({required File image, required String uid}) async {
     final ref = FirebaseStorage.instance.ref('images/').child(uid);
     await ref.putFile(image);
-    return await ref.getDownloadURL();
+    String url = await ref.getDownloadURL();
+    return url;
   }
 }
