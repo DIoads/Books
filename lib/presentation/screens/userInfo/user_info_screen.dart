@@ -65,7 +65,7 @@ class UserInfoViewState extends ConsumerState<UserInfoView> with ImgPicker {
                 children: [
                   IconButton(
                       onPressed: () {
-                        showPicker(context);
+                        showPicker(context: context, uid: "ejemplo");
                       },
                       icon: const Icon(Icons.add_photo_alternate_outlined)),
                   // SizedBox(

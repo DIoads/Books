@@ -16,7 +16,7 @@ final userNotifierProvider = StateNotifierProvider<UserNotifier, UserEntity>(
 class UserNotifier extends StateNotifier<UserEntity> {
   final AuthServicesInterface _auth = FirebaseAuthService();
   final _userRepo = UserRepositoryImpl();
-  FirebaseStorage storage = FirebaseStorage.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
   UserNotifier() : super(UserEntity(age: '', username: ''));
 
   Future<void> logIn(

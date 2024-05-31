@@ -1,7 +1,7 @@
 import 'package:book/domain/datasources/user_datasource.dart';
 import 'package:book/domain/entities/user_entity.dart';
 import 'package:book/domain/repositories/user_repository.dart';
-import 'package:book/infrastructure/datasources/user_datasourceimpl.dart';
+import 'package:book/infrastructure/datasources/user_datasource_impl.dart';
 
 class UserRepositoryImpl implements UserRepository {
   UserDatasource userDataSource = UserDatasourceimpl();

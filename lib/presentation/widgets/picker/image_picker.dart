@@ -1,12 +1,12 @@
+import 'package:book/domain/repositories/image_repository.dart';
+import 'package:book/infrastructure/repositories/image_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 
-import 'package:path/path.dart';
-
 mixin ImgPicker {
-  void showPicker(context) {
+  void showPicker({required BuildContext context, required String uid}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -17,14 +17,14 @@ mixin ImgPicker {
                     leading: const Icon(Icons.photo_library),
                     title: const Text('Gallery'),
                     onTap: () {
-                      imgFromGallery();
+                      imgFromGallery(uid: uid);
                       Navigator.of(context).pop();
                     }),
                 ListTile(
                   leading: const Icon(Icons.photo_camera),
                   title: const Text('Camera'),
                   onTap: () {
-                    imgFromCamera();
+                    imgFromCamera(uid: uid);
                     Navigator.of(context).pop();
                   },
                 ),
@@ -37,38 +37,32 @@ mixin ImgPicker {
   File? _photo;
   final ImagePicker _picker = ImagePicker();
 
-  Future imgFromGallery() async {
+  Future imgFromGallery({required String uid}) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       _photo = File(pickedFile.path);
-      uploadFile();
+      uploadFile(uid: uid);
     }
   }
 
-  Future imgFromCamera() async {
+  Future imgFromCamera({required String uid}) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
       _photo = File(pickedFile.path);
-      uploadFile();
+      uploadFile(uid: uid);
     }
   }
 
-  Future uploadFile() async {
+  Future uploadFile({required String uid}) async {
+    ImageRepository imageRepository = ImageRepositoryImpl();
     if (_photo == null) return;
-    final fileName = basename(_photo!.path);
-    final destination = 'files/$fileName';
 
     try {
-      /*  
-    final ref = firebase_storage.FirebaseStorage.instance
-          .ref(destination)
-          .child('file/');
-
-      await ref.putFile(_photo!); */
+      imageRepository.uploadImage(image: _photo!, uid: uid);
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 }

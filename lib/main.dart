@@ -14,14 +14,11 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const ProviderScope(
-    child: MainApp(),
-  ));
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AppTheme appTheme = ref.watch(themeNotifierProvider);
